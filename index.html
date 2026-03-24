@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Novatio | Arizona ESA - $0 Tuition for Every AZ Family</title>
+  <meta name="description" content="Novatio is Arizona's accredited online school for grades 4–8. Fully funded through the universal ESA program. Every Arizona student qualifies." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Indie+Flower&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --dark:    #222625;
+      --orange:  #F15A29;
+      --orange2: #E04D1F;
+      --warm:    #FAF8F5;
+      --white:   #ffffff;
+      --border:  #E5E7EB;
+      --muted:   #6B7280;
+      --radius:  12px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--dark); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    h1,h2,h3,h4 { font-family: 'Bricolage Grotesque', sans-serif; line-height: 1.15; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+
+    /* NAV */
+    nav { background: var(--dark); color: var(--white); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; max-width: 1160px; margin: 0 auto; padding: 12px 24px; }
+    .nav-logo img { height: 22px; width: auto; }
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .nav-phone { font-size: 14px; color: rgba(255,255,255,0.6); }
+    .nav-phone a { color: rgba(255,255,255,0.9); }
+    .btn-orange { padding: 10px 22px; border-radius: 8px; background: var(--orange); color: var(--white); font-weight: 700; font-size: 14px; cursor: pointer; border: none; transition: background .2s; font-family: 'Inter', sans-serif; }
+    .btn-orange:hover { background: var(--orange2); }
+
+    /* HERO */
+    .hero { background: var(--white); padding: 64px 0 52px; border-bottom: 1px solid var(--border); }
+    .hero-grid { display: grid; grid-template-columns: 1fr 420px; gap: 56px; align-items: start; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 14px; border-radius: 999px; font-size: 13px; font-weight: 600; background: rgba(241,90,41,0.08); color: var(--orange); border: 1px solid rgba(241,90,41,0.2); margin-bottom: 20px; }
+    .hero h1 { font-size: clamp(32px, 4.5vw, 50px); font-weight: 800; letter-spacing: -1.5px; margin-bottom: 20px; color: var(--dark); }
+    .hero h1 .handwrite { font-family: 'Indie Flower', cursive; font-size: 1.05em; font-weight: 400; color: var(--orange); letter-spacing: 0; }
+    .hero-sub { font-size: 17px; color: var(--muted); max-width: 500px; margin-bottom: 32px; line-height: 1.7; }
+    .hero-sub strong { color: var(--dark); }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 999px; font-size: 12px; font-weight: 600; background: var(--warm); color: #374151; border: 1px solid var(--border); }
+
+    /* FORM */
+    .form-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; box-shadow: 0 8px 40px rgba(0,0,0,0.1); }
+    .form-spots { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; font-size: 11px; font-weight: 600; background: #FEF3C7; color: #92400E; margin-bottom: 10px; }
+    .form-card h3 { font-size: 19px; font-weight: 700; margin-bottom: 4px; }
+    .form-sub { font-size: 13px; color: var(--muted); margin-bottom: 18px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .fg { margin-bottom: 12px; }
+    .fg label { display: block; font-size: 12px; font-weight: 600; color: #374151; margin-bottom: 5px; }
+    .fg input, .fg select { width: 100%; padding: 10px 12px; background: var(--white); border: 1px solid var(--border); border-radius: 8px; color: var(--dark); font-size: 14px; outline: none; transition: border-color .2s; font-family: 'Inter', sans-serif; }
+    .fg input::placeholder { color: #9CA3AF; }
+    .fg input:focus, .fg select:focus { border-color: var(--orange); box-shadow: 0 0 0 3px rgba(241,90,41,0.1); }
+    .consent { font-size: 11px; color: var(--muted); line-height: 1.5; margin: 10px 0 16px; }
+    .consent a { color: var(--orange); }
+    .btn-submit { width: 100%; padding: 13px; background: var(--orange); color: var(--white); font-family: 'Bricolage Grotesque', sans-serif; font-size: 16px; font-weight: 800; border: none; border-radius: 9px; cursor: pointer; transition: background .2s; }
+    .btn-submit:hover { background: var(--orange2); }
+    .form-secure { text-align: center; font-size: 11px; color: var(--muted); margin-top: 10px; }
+
+    /* TRUST BAR */
+    .trust-bar { background: var(--warm); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 16px 0; }
+    .trust-inner { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 28px; }
+    .trust-item { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; color: #374151; }
+    .trust-div { width: 1px; height: 24px; background: var(--border); }
+    .cognia-trust { height: 48px; width: auto; }
+
+    /* SECTIONS */
+    .section { padding: 72px 0; }
+    .section-warm { background: var(--warm); }
+    .label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 10px; }
+    .section-title { font-size: clamp(26px, 3.5vw, 40px); font-weight: 800; letter-spacing: -1px; margin-bottom: 14px; }
+    .section-sub { font-size: 16px; color: var(--muted); max-width: 560px; line-height: 1.7; }
+
+    /* VIDEO — padding-bottom ratio (reliable cross-browser) */
+    .video-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.12); background: #e5e7eb; }
+    .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+    /* A DAY TABS */
+    .tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; }
+    .tab-btn { padding: 8px 18px; border-radius: 999px; font-size: 13px; font-weight: 600; background: transparent; border: 1px solid var(--border); color: var(--muted); cursor: pointer; transition: all .2s; font-family: 'Inter', sans-serif; }
+    .tab-btn.active { background: var(--orange); color: var(--white); border-color: var(--orange); }
+    .tab-content { display: none; }
+    .tab-content.active { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .tab-text h3 { font-size: 24px; font-weight: 800; margin-bottom: 12px; }
+    .tab-text p { font-size: 15px; color: var(--muted); line-height: 1.7; }
+    .tab-media { position: relative; border-radius: 14px; overflow: hidden; background: #e5e7eb; }
+    .tab-media img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 14px; }
+    .tab-media video { width: 100%; display: block; border-radius: 14px; }
+    .testimonial { background: var(--warm); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; margin-top: 24px; }
+    .testimonial p { font-size: 14px; font-style: italic; color: var(--dark); margin-bottom: 8px; line-height: 1.6; }
+    .testimonial cite { font-size: 12px; color: var(--muted); font-style: normal; }
+
+    /* CLUBS */
+    .clubs-note { display: flex; align-items: flex-start; gap: 12px; background: rgba(241,90,41,0.06); border: 1px solid rgba(241,90,41,0.18); border-radius: var(--radius); padding: 14px 18px; margin-bottom: 36px; font-size: 14px; color: var(--dark); line-height: 1.5; }
+    .clubs-note svg { flex-shrink: 0; margin-top: 2px; }
+    .clubs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .club-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; transition: border-color .2s, box-shadow .2s; }
+    .club-card:hover { border-color: rgba(241,90,41,0.3); box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
+    .club-card.featured { border-color: var(--orange); background: rgba(241,90,41,0.02); }
+    .club-pill { display: inline-flex; padding: 2px 10px; border-radius: 999px; font-size: 11px; font-weight: 600; background: rgba(241,90,41,0.1); color: var(--orange); margin-bottom: 10px; }
+    .club-card.featured .club-pill { background: var(--orange); color: var(--white); }
+    .club-card h4 { font-size: 16px; font-weight: 800; margin-bottom: 4px; }
+    .club-skill { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+    .club-card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .club-challenge { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
+    .club-challenge-lbl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--orange); margin-bottom: 4px; }
+    .club-challenge p { font-size: 12px; color: #374151; }
+
+    /* VS */
+    .vs-wrap { max-width: 860px; margin: 48px auto 0; }
+    .vs-grid { display: grid; grid-template-columns: 1fr 56px 1fr; }
+    .vs-col { border-radius: var(--radius); overflow: hidden; }
+    .vs-novatio { background: var(--dark); color: var(--white); }
+    .vs-trad { background: var(--white); border: 1px solid var(--border); }
+    .vs-head { padding: 16px 22px; font-weight: 700; font-size: 15px; }
+    .vs-novatio .vs-head { background: var(--orange); }
+    .vs-trad .vs-head { border-bottom: 1px solid var(--border); color: var(--muted); }
+    .vs-row { display: flex; align-items: center; gap: 10px; padding: 13px 22px; border-bottom: 1px solid rgba(255,255,255,0.08); font-size: 14px; }
+    .vs-trad .vs-row { border-bottom-color: var(--border); color: var(--muted); }
+    .vs-row:last-child { border-bottom: none; }
+    .chk { color: var(--orange); flex-shrink: 0; }
+    .xmark { color: #D1D5DB; flex-shrink: 0; }
+    .vs-mid { display: flex; align-items: center; justify-content: center; }
+    .vs-star { width: 48px; height: 48px; }
+
+    /* ESA — white/warm, no dark bg */
+    .esa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+    .esa-points { margin-top: 20px; display: flex; flex-direction: column; gap: 13px; }
+    .esa-pt { display: flex; align-items: flex-start; gap: 12px; }
+    .esa-pt-icon { width: 20px; height: 20px; border-radius: 50%; background: rgba(241,90,41,0.12); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+    .esa-pt p { font-size: 15px; color: var(--muted); line-height: 1.5; }
+    .esa-pt strong { color: var(--dark); }
+    .universal-callout { background: rgba(241,90,41,0.06); border: 1px solid rgba(241,90,41,0.2); border-radius: var(--radius); padding: 20px 24px; margin-top: 24px; }
+    .universal-callout h4 { font-size: 16px; font-weight: 700; margin-bottom: 8px; color: var(--dark); }
+    .universal-callout p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+    .esa-card { background: var(--warm); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; }
+    .esa-card h3 { font-size: 19px; font-weight: 700; margin-bottom: 20px; }
+    .esa-line { display: flex; justify-content: space-between; padding: 13px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+    .esa-line:last-child { border-bottom: none; }
+    .esa-lbl { color: var(--muted); }
+    .esa-val { font-weight: 600; color: var(--dark); }
+    .esa-val.green { color: #16A34A; }
+    .esa-total { background: var(--orange); border-radius: 9px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; margin-top: 16px; color: var(--white); }
+    .esa-total-lbl { font-size: 14px; font-weight: 600; }
+    .esa-total-val { font-family: 'Bricolage Grotesque', sans-serif; font-size: 32px; font-weight: 800; }
+
+    /* PRESS */
+    .press-grid { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+    .press-item { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; font-size: 14px; color: var(--muted); line-height: 1.6; flex: 1; min-width: 240px; display: flex; flex-direction: column; gap: 10px; }
+    .press-logo { height: 28px; width: auto; object-fit: contain; object-position: left; display: block; }
+    .press-outlet { font-size: 13px; font-weight: 700; color: #374151; letter-spacing: 0.3px; }
+    .press-quote { font-size: 13px; color: var(--muted); font-style: italic; line-height: 1.6; }
+
+    /* CTA */
+    .cta-section { background: var(--warm); border-top: 1px solid var(--border); text-align: center; padding: 80px 0; }
+    .cta-section h2 { font-size: clamp(28px, 4vw, 44px); font-weight: 800; letter-spacing: -1px; margin-bottom: 14px; }
+    .cta-section p { font-size: 17px; color: var(--muted); margin-bottom: 32px; }
+    .btn-cta { display: inline-block; padding: 16px 44px; background: var(--orange); color: var(--white); font-family: 'Bricolage Grotesque', sans-serif; font-size: 18px; font-weight: 800; border-radius: 10px; cursor: pointer; border: none; transition: background .2s; }
+    .btn-cta:hover { background: var(--orange2); }
+    .cta-sub { font-size: 13px; color: var(--muted); margin-top: 14px; }
+
+    /* FOOTER */
+    footer { background: var(--dark); color: var(--white); padding: 48px 0 32px; }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 32px; margin-bottom: 32px; }
+    .footer-col h4 { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+    .footer-col a { display: block; font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 8px; transition: color .2s; }
+    .footer-col a:hover { color: var(--white); }
+    .footer-logo { height: 20px; width: auto; margin-bottom: 12px; }
+    .footer-tagline { font-size: 13px; color: rgba(255,255,255,0.5); max-width: 220px; line-height: 1.5; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1); }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.35); }
+    .cognia-footer { height: 40px; width: auto; opacity: 0.7; }
+
+    /* RESPONSIVE */
+    .ty-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; max-width: 980px; margin: 0 auto; }
+    @media (max-width: 960px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .form-card { max-width: 480px; }
+      .clubs-grid { grid-template-columns: 1fr 1fr; }
+      .vs-grid { grid-template-columns: 1fr; }
+      .vs-mid { display: none; }
+      .esa-grid { grid-template-columns: 1fr; gap: 40px; }
+      .tab-content.active { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .ty-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+      .trust-div { display: none; }
+      .clubs-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="https://novatio.school" class="nav-logo">
+      <img src="./images/novatio-logo-white.svg" alt="Novatio" />
+    </a>
+    <div class="nav-right">
+      <span class="nav-phone"><a href="tel:520-375-3356">(520) 375-3356</a></span>
+      <button class="btn-orange" onclick="document.getElementById('apply-form').scrollIntoView({behavior:'smooth'})">Check Eligibility</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+
+      <div>
+        <div class="hero-badge">🌵 ESA Approved · Grades 4–8 · Arizona</div>
+        <h1>Master academics in<br /><span class="handwrite">2 hours.</span> Spend afternoons<br />on real world skills.</h1>
+        <p class="hero-sub">
+          Novatio is a private, virtual, AI-driven, teacher-guided school for grades 4–8. Students master academics by lunch, then spend afternoons on real-world skills.
+          <strong> Arizona families pay nothing through ESA.</strong>
+        </p>
+        <div class="hero-tags">
+          <span class="tag">✓ ESA Approved</span>
+          <span class="tag">✓ Cognia Accredited</span>
+          <span class="tag">✓ Grades 4–8</span>
+          <span class="tag">✓ $0 Tuition</span>
+          <span class="tag">✓ AI-Driven Personalization</span>
+        </div>
+      </div>
+
+      <div id="apply-form">
+        <div class="form-card">
+          <div class="form-spots">🔥 Limited Spots for 2025–26</div>
+          <h3>Check Your Eligibility</h3>
+          <p class="form-sub">Takes less than 2 minutes. No commitment required.</p>
+          <form onsubmit="handleSubmit(event)">
+            <div class="form-row">
+              <div class="fg"><label>Your First Name *</label><input type="text" name="first_name" placeholder="First name" required /></div>
+              <div class="fg"><label>Your Last Name *</label><input type="text" name="last_name" placeholder="Last name" required /></div>
+            </div>
+            <div class="fg"><label>Email Address *</label><input type="email" name="email" placeholder="sarah@example.com" required /></div>
+            <div class="fg"><label>Phone Number *</label><input type="tel" name="phone" placeholder="(555) 000-0000" required /></div>
+            <div class="form-row">
+              <div class="fg">
+                <label>Student's Grade *</label>
+                <select name="grade" required>
+                  <option value="" disabled selected>Select grade</option>
+                  <option>4th Grade</option><option>5th Grade</option>
+                  <option>6th Grade</option><option>7th Grade</option><option>8th Grade</option>
+                </select>
+              </div>
+              <div class="fg"><label>Zip Code *</label><input type="text" name="zip" placeholder="85001" maxlength="5" required /></div>
+            </div>
+            <p class="consent">By submitting, you agree to receive texts and calls from Novatio about your application. Reply STOP to opt out. <a href="#">Privacy Policy</a>.</p>
+            <button type="submit" class="btn-submit">Check Eligibility →</button>
+          </form>
+          <p class="form-secure">🔒 Secure · No commitment required</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- STAT STRIP -->
+<div style="background:var(--orange);color:var(--white);padding:14px 0;text-align:center;">
+  <div class="container">
+    <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:16px;font-weight:800;">Students learn 4.5x faster</span>
+    <span style="font-size:14px;opacity:0.9;margin-left:8px;">based on MAP testing results</span>
+  </div>
+</div>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item"><img src="./images/Cognia_ACCRED-Badge-GREY-684x684 (2).png" alt="Cognia Accredited" class="cognia-trust" /></div>
+    <div class="trust-div"></div>
+    <div class="trust-item">
+      <svg width="16" height="16" fill="none" stroke="#F15A29" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      Arizona ESA Approved
+    </div>
+    <div class="trust-div"></div>
+    <div class="trust-item">
+      <svg width="16" height="16" fill="none" stroke="#F15A29" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      Live Teachers · Small Classes
+    </div>
+    <div class="trust-div"></div>
+    <div class="trust-item">
+      <svg width="16" height="16" fill="none" stroke="#F15A29" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      Grades 4–8
+    </div>
+  </div>
+</div>
+
+<!-- VIDEO -->
+<section class="section">
+  <div class="container">
+    <div style="max-width:760px;margin:0 auto;text-align:center;">
+      <div class="label" style="text-align:center;">See It In Action</div>
+      <h2 class="section-title" style="text-align:center;margin-bottom:8px;">What is Novatio?</h2>
+      <p class="section-sub" style="margin:0 auto 32px;">See if your family qualifies for $0 tuition</p>
+      <div class="video-wrap">
+        <iframe
+          src="https://www.youtube.com/embed/FNeyeKnno5I?rel=0&modestbranding=1"
+          title="What is Novatio? | The Future of Education"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- A DAY AT NOVATIO -->
+<section class="section section-warm">
+  <div class="container">
+    <div class="label">Daily Schedule</div>
+    <h2 class="section-title">A Day at Novatio</h2>
+    <p class="section-sub" style="margin-bottom:32px;">Mornings for academics. Afternoons for real-world skills.</p>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab(event,'morning')">Morning Launch</button>
+      <button class="tab-btn" onclick="switchTab(event,'learning')">2-Hour Learning</button>
+      <button class="tab-btn" onclick="switchTab(event,'break')">Break Time</button>
+      <button class="tab-btn" onclick="switchTab(event,'clubs')">Novatio Clubs</button>
+      <button class="tab-btn" onclick="switchTab(event,'wrapup')">2PM Wrap Up</button>
+    </div>
+
+    <div id="tab-morning" class="tab-content active">
+      <div class="tab-text">
+        <h3>Instead of jumping straight into lessons, we play games</h3>
+        <p>Drawing competitions, solving puzzles, or navigating complex escape rooms. We warm up the mind before diving into the day's curriculum.</p>
+        <div class="testimonial"><p>"I really like how I can learn at my own pace, and be able to go ahead of my grade."</p><cite>Sophie, Novatio student</cite></div>
+      </div>
+      <div class="tab-media" id="media-morning">
+        <video id="vid-morning" src="./videos/morning launch.mp4" autoplay muted loop playsinline style="display:none;border-radius:14px;width:100%;"></video>
+        <img id="img-morning" src="./images/image-78.png" alt="Morning launch at Novatio" />
+      </div>
+    </div>
+
+    <div id="tab-learning" class="tab-content">
+      <div class="tab-text">
+        <h3>Mornings devoted to core academics</h3>
+        <p>Students learn twice the curriculum and advance beyond peers in just two hours a day. Our school day is designed to eliminate boredom and wasted time. Every learner follows their own path. A student can be grade 3 in math and grade 7 in social studies.</p>
+      </div>
+      <div class="tab-media">
+        <video id="vid-learning" src="./videos/learning.mp4" autoplay muted loop playsinline style="display:none;border-radius:14px;width:100%;"></video>
+        <img id="img-learning" src="./images/image-79.png" alt="2-hour learning" />
+      </div>
+    </div>
+
+    <div id="tab-break" class="tab-content">
+      <div class="tab-text">
+        <h3>After a focused morning, it's time to recharge</h3>
+        <p>Students take a break to enjoy time together and step away from screens. Then it's on to the best part of the day.</p>
+      </div>
+      <div class="tab-media">
+        <video id="vid-break" src="./videos/break.mp4" autoplay muted loop playsinline style="display:none;border-radius:14px;width:100%;"></video>
+        <img id="img-break" src="./images/image-80.png" alt="Break time" />
+      </div>
+    </div>
+
+    <div id="tab-clubs" class="tab-content">
+      <div class="tab-text">
+        <h3>Afternoons for real-world skills</h3>
+        <p>Hands-on clubs where students build real-world skills: entrepreneurship, coding, financial literacy, robotics, and more. Students choose what excites them.</p>
+        <div class="testimonial"><p>"Tyiir, a 10-year-old Novatio student, is already applying what he's learned. He launched his own custom T-shirt business with confidence and creativity."</p><cite>Ty's Story</cite></div>
+      </div>
+      <div class="tab-media">
+        <video id="vid-clubs" src="./videos/clubs.mp4" autoplay muted loop playsinline style="display:none;border-radius:14px;width:100%;"></video>
+        <img id="img-clubs" src="./images/image-81.png" alt="Novatio clubs" />
+      </div>
+    </div>
+
+    <div id="tab-wrapup" class="tab-content">
+      <div class="tab-text">
+        <h3>No homework, just real-world work</h3>
+        <p>School wraps up by 2PM. Homework-free means more time with family. But for many students, the learning doesn't stop. They keep building because they love what they're doing.</p>
+      </div>
+      <div class="tab-media">
+        <video id="vid-wrapup" src="./videos/wrap up.mp4" autoplay muted loop playsinline style="display:none;border-radius:14px;width:100%;"></video>
+        <img id="img-wrapup" src="./images/image-82.png" alt="2PM wrap up" />
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CLUBS -->
+<section class="section">
+  <div class="container">
+    <div class="label">Afternoon Clubs</div>
+    <h2 class="section-title">Clubs that go beyond the classroom</h2>
+    <p class="section-sub" style="margin-bottom:24px;">Students choose 4 clubs each session to explore real-world skills. Level Up runs for everyone, every session.</p>
+
+    <div class="clubs-note">
+      <svg width="16" height="16" fill="none" stroke="#F15A29" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <span><strong>Clubs rotate and change every session.</strong> These are sample clubs from the current school year. Each new session brings fresh options for students to explore.</span>
+    </div>
+
+    <div class="clubs-grid">
+      <div class="club-card featured">
+        <div class="club-pill">⭐ Everyone does this one</div>
+        <h4>Level Up</h4>
+        <div class="club-skill">Goal Setting & Daily Habits</div>
+        <p>Have you ever wanted to feel stronger? More focused? Happier each day? We dive into the science of wellbeing and design our own habit challenges to put it to the test.</p>
+        <div class="club-challenge"><div class="club-challenge-lbl">The Challenge</div><p>Design a personalized 30-day well-being system and track your progress weekly.</p></div>
+      </div>
+      <div class="club-card">
+        <div class="club-pill">Student Choice</div>
+        <h4>The Artist Project</h4>
+        <div class="club-skill">Become an Expert</div>
+        <p>Love graffiti, anime, or pixel art? Explore a range of art forms, then deep dive into the story, style, and impact of one famous creator.</p>
+        <div class="club-challenge"><div class="club-challenge-lbl">The Challenge</div><p>Score 90%+ on a final mastery quiz about your chosen artist.</p></div>
+      </div>
+      <div class="club-card">
+        <div class="club-pill">Student Choice</div>
+        <h4>The Summit</h4>
+        <div class="club-skill">Critical Thinking</div>
+        <p>Explore global challenges and defend a position, just like diplomats at a UN summit. You'll argue the side you personally disagree with.</p>
+        <div class="club-challenge"><div class="club-challenge-lbl">The Challenge</div><p>Submit a well-reasoned final position evaluated by AI for reasoning and evidence.</p></div>
+      </div>
+      <div class="club-card">
+        <div class="club-pill">Student Choice</div>
+        <h4>Game On</h4>
+        <div class="club-skill">Coding</div>
+        <p>Ever wanted to make your own video game? Build characters, design levels, and code your very own game using Scratch.</p>
+        <div class="club-challenge"><div class="club-challenge-lbl">The Challenge</div><p>Build and publish a Scratch game that earns 100+ likes on the community site.</p></div>
+      </div>
+      <div class="club-card">
+        <div class="club-pill">Student Choice</div>
+        <h4>Wealth Builders</h4>
+        <div class="club-skill">Financial Literacy</div>
+        <p>Live 20 years of your future through an interactive simulation. Make decisions about earning, spending, saving, and investing, then see how those choices play out.</p>
+        <div class="club-challenge"><div class="club-challenge-lbl">The Challenge</div><p>Score 100% on the National Financial Capability Test.</p></div>
+      </div>
+      <div class="club-card">
+        <div class="club-pill">Student Choice</div>
+        <h4>On Air</h4>
+        <div class="club-skill">Public Speaking & Storytelling</div>
+        <p>Become a real sports broadcaster. Break down strategy, analyze stats, and tell stories that keep fans hooked. Then create your own show and share it.</p>
+        <div class="club-challenge"><div class="club-challenge-lbl">The Challenge</div><p>Deliver a 10–15 minute live broadcast scored by AI on presentation quality.</p></div>
+      </div>
+      <div class="club-card">
+        <div class="club-pill">Student Choice</div>
+        <h4>RoboLab</h4>
+        <div class="club-skill">STEM & Coding</div>
+        <p>Step into the role of an engineer and code a virtual robot to navigate mazes, clean up the ocean floor, and drive like a self-driving car.</p>
+        <div class="club-challenge"><div class="club-challenge-lbl">The Challenge</div><p>Complete a Vex VR Robotics Challenge. Bonus levels available for those who want to push further.</p></div>
+      </div>
+      <div class="club-card">
+        <div class="club-pill">Student Choice</div>
+        <h4>Mission: Everest</h4>
+        <div class="club-skill">Teamwork & Communication</div>
+        <p>Compete in weekly escape rooms and puzzles, then take on a Harvard-level leadership simulation that only 55% of Harvard students complete.</p>
+        <div class="club-challenge"><div class="club-challenge-lbl">The Challenge</div><p>Complete the Harvard Business School Everest Leadership and Teamwork Simulation.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TY'S TESTIMONIAL -->
+<section style="background:var(--orange);padding:72px 0;">
+  <div class="container">
+    <div class="ty-grid">
+      <div style="color:var(--white);">
+        <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:16px;">Student Story</div>
+        <blockquote style="font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(20px,2.5vw,28px);font-weight:700;line-height:1.3;color:#FFFFAC;margin-bottom:20px;">"I love how you start with a different grade level so you can get a refresher on what you already know. And my teacher is amazing and the best!"</blockquote>
+        <p style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.75);margin-bottom:16px;">— Tyiir, age 10, Buckeye AZ</p>
+        <p style="font-size:16px;color:rgba(255,255,255,0.9);line-height:1.7;">Tyiir is already applying what he's learned at Novatio, launching his own custom T-shirt business with confidence and creativity.</p>
+      </div>
+      <div style="position:relative;padding-bottom:75%;height:0;overflow:hidden;border-radius:16px;box-shadow:0 20px 50px rgba(0,0,0,0.25);background:#e5e7eb;">
+        <iframe
+          src="https://www.youtube.com/embed/kIADBDw6N4s?rel=0&modestbranding=1"
+          title="Ty's Testimonial — Novatio Student"
+          style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VS COMPARISON -->
+<section class="section section-warm">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:4px;" class="label">The Difference</div>
+    <h2 class="section-title" style="text-align:center;">Novatio is a school rebuilt for the future</h2>
+    <div class="vs-wrap">
+      <div class="vs-grid">
+        <div class="vs-col vs-novatio">
+          <div class="vs-head">Novatio</div>
+          <div class="vs-row"><span class="chk">✓</span> 2-hour personalized core learning</div>
+          <div class="vs-row"><span class="chk">✓</span> AI-driven personalization</div>
+          <div class="vs-row"><span class="chk">✓</span> Live teachers · small classes</div>
+          <div class="vs-row"><span class="chk">✓</span> Academic support team</div>
+          <div class="vs-row"><span class="chk">✓</span> No homework, just real-work</div>
+          <div class="vs-row"><span class="chk">✓</span> Afternoons for real-world skills</div>
+          <div class="vs-row"><span class="chk">✓</span> Built for diverse learning needs</div>
+        </div>
+        <div class="vs-mid">
+          <img src="./images/vs-star.svg" alt="VS" class="vs-star" />
+        </div>
+        <div class="vs-col vs-trad">
+          <div class="vs-head">Traditional School</div>
+          <div class="vs-row"><span class="xmark">✗</span> 6–8 hour school days</div>
+          <div class="vs-row"><span class="xmark">✗</span> One pace for all</div>
+          <div class="vs-row"><span class="xmark">✗</span> Crowded classrooms</div>
+          <div class="vs-row"><span class="xmark">✗</span> Limited adaptability</div>
+          <div class="vs-row"><span class="xmark">✗</span> Hours of nightly homework</div>
+          <div class="vs-row"><span class="xmark">✗</span> Standardized test focus</div>
+          <div class="vs-row"><span class="xmark">✗</span> Rigid structure</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ESA FUNDING — warm/white, no dark bg -->
+<section class="section">
+  <div class="container">
+    <div class="esa-grid">
+      <div>
+        <div class="label">Arizona ESA Program</div>
+        <h2 class="section-title">Arizona Education Savings Account</h2>
+        <p class="section-sub">Arizona families: tuition fully covered. No out-of-pocket costs.</p>
+        <div class="esa-points">
+          <div class="esa-pt"><div class="esa-pt-icon"><svg width="12" height="12" fill="none" stroke="#F15A29" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><p><strong>No out-of-pocket costs</strong> for Arizona families</p></div>
+          <div class="esa-pt"><div class="esa-pt-icon"><svg width="12" height="12" fill="none" stroke="#F15A29" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><p>Funds <strong>deposited directly</strong> to the school</p></div>
+          <div class="esa-pt"><div class="esa-pt-icon"><svg width="12" height="12" fill="none" stroke="#F15A29" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><p>Any remaining balance is yours for <strong>other approved educational expenses</strong></p></div>
+        </div>
+        <div class="universal-callout">
+          <h4>Universal eligibility: every Arizona student qualifies.</h4>
+          <p>Unlike programs that require financial need or a disability, Arizona's ESA is open to <strong>every K–12 student in the state</strong>. No income test. No special requirements. All Novatio applicants are accepted. We'll walk you through every step of the application.</p>
+        </div>
+      </div>
+      <div>
+        <div class="esa-card">
+          <h3>Arizona families pay $0</h3>
+          <div class="esa-line"><span class="esa-lbl">Novatio annual tuition</span><span class="esa-val">$7,000</span></div>
+          <div class="esa-line"><span class="esa-lbl">Arizona ESA per student</span><span class="esa-val green">Covers tuition in full</span></div>
+          <div class="esa-line"><span class="esa-lbl">Remaining ESA balance</span><span class="esa-val green">Yours for extras</span></div>
+          <div class="esa-total"><span class="esa-total-lbl">Your cost</span><span class="esa-total-val">$0</span></div>
+          <p style="font-size:12px;color:var(--muted);margin-top:12px;line-height:1.5;">ESA amounts vary by student and are administered by the Arizona Department of Education. We'll help you through the application process.</p>
+          <button class="btn-orange" style="width:100%;margin-top:20px;padding:13px;font-size:15px;border-radius:9px;" onclick="document.getElementById('apply-form').scrollIntoView({behavior:'smooth'})">Apply for ESA Now →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRESS -->
+<section class="section section-warm">
+  <div class="container">
+    <div class="label">In The Press</div>
+    <h2 class="section-title">Arizona's schools are changing.</h2>
+    <p class="section-sub">Novatio has been featured in statewide coverage of Arizona's education revolution.</p>
+    <div class="press-grid">
+      <div class="press-item">
+        <img src="./images/logo-azfamily.png" alt="AZFamily" class="press-logo" />
+        <p class="press-quote">"We actually exceeded our initial goal of learning two times as much as a traditional school."</p>
+        <p style="font-size:12px;color:var(--muted);margin-top:4px;">— Karissa Ham, Head of School</p>
+      </div>
+      <div class="press-item">
+        <img src="./images/logo-azbigmedia.png" alt="AZ Big Media" class="press-logo" style="filter:brightness(0);opacity:0.75;" />
+        <p class="press-quote">"AI helps us do the stuff we got into teaching for. It frees us from the repetitive tasks so we can really connect with our students."</p>
+        <p style="font-size:12px;color:var(--muted);margin-top:4px;">— JP Guerra, Novatio teacher</p>
+      </div>
+      <div class="press-item">
+        <span class="press-outlet" style="font-size:18px;font-weight:900;letter-spacing:-0.5px;color:#0062A3;">12News</span>
+        <p class="press-quote">"New Arizona school uses AI tutors to help teach kids financial literacy"</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Ready to give your child a better education?</h2>
+    <p>Join Arizona families who've discovered a smarter way to learn.</p>
+    <button class="btn-cta" onclick="document.getElementById('apply-form').scrollIntoView({behavior:'smooth'})">Check Your Eligibility</button>
+    <p class="cta-sub">Universal ESA · every Arizona student qualifies · All applicants accepted · $0 tuition</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <img src="./images/novatio-logo-white.svg" alt="Novatio" class="footer-logo" />
+        <p class="footer-tagline">A private, virtual, AI-driven, teacher-guided school for grades 4–8. Based in AZ. Accessible everywhere.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Program</h4>
+        <a href="https://novatio.school/curriculum">Curriculum</a>
+        <a href="https://novatio.school/admissions">Admissions</a>
+        <a href="https://novatio.school/about">Why Novatio</a>
+        <a href="#">Tuition & ESA</a>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a href="https://www.azed.gov/esa" target="_blank" rel="noopener">ADE ESA Program ↗</a>
+        <a href="https://novatio.school/contact">Contact Admissions</a>
+        <a href="https://youtube.com/@NovatioSchool" target="_blank" rel="noopener">YouTube ↗</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="tel:520-375-3356">(520) 375-3356</a>
+        <a href="mailto:admissions@novatio.school">admissions@novatio.school</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Novatio School. Cognia-accredited private online school. Arizona ESA approved education provider. Founded 2025.</p>
+      <img src="./images/Cognia_ACCRED-Badge-GREY-684x684 (2).png" alt="Cognia Accredited" class="cognia-footer" />
+    </div>
+  </div>
+</footer>
+
+<script>
+  // UTM capture
+  (function() {
+    const p = new URLSearchParams(window.location.search);
+    ['utm_source','utm_medium','utm_campaign','utm_term','utm_content'].forEach(k => {
+      if (p.get(k)) localStorage.setItem(k, p.get(k));
+    });
+  })();
+
+  const HS_PORTAL_ID = '49158869';
+  const HS_FORM_ID   = '0ddc060e-31d4-46b6-85cd-25a692653447';
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const btn  = form.querySelector('.btn-submit');
+    btn.textContent = 'Submitting…'; btn.disabled = true;
+
+    const data = Object.fromEntries(new FormData(form));
+    const fields = [
+      { name: 'firstname',         value: data.first_name },
+      { name: 'lastname',          value: data.last_name  },
+      { name: 'email',             value: data.email      },
+      { name: 'phone',             value: data.phone      },
+      { name: 'grade_eligibility', value: data.grade      },
+      { name: 'zip',               value: data.zip        },
+      { name: 'state_code',        value: 'AZ'            },
+    ];
+    ['utm_source','utm_medium','utm_campaign','utm_term','utm_content'].forEach(k => {
+      const v = localStorage.getItem(k);
+      if (v) fields.push({ name: k, value: v });
+    });
+
+    try {
+      await fetch(
+        `https://api.hsforms.com/submissions/v3/integration/submit/${HS_PORTAL_ID}/${HS_FORM_ID}`,
+        { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ fields, context: { pageUri: location.href, pageName: document.title } }) }
+      );
+    } catch(err) { console.error('HubSpot submit failed:', err); }
+
+    form.innerHTML = `
+      <div style="text-align:center;padding:32px 0;">
+        <div style="font-size:44px;margin-bottom:14px;">✅</div>
+        <h3 style="font-size:19px;font-weight:700;margin-bottom:8px;color:#222625;">You're on your way!</h3>
+        <p style="color:#6B7280;font-size:14px;line-height:1.6;">A Novatio admissions counselor will reach out within one business day to confirm your ESA eligibility and walk you through next steps.</p>
+      </div>`;
+  }
+
+  // Video/image toggle: show video when it loads, hide fallback image
+  ['morning','learning','break','clubs','wrapup'].forEach(id => {
+    const vid = document.getElementById('vid-' + id);
+    const img = document.getElementById('img-' + id);
+    if (!vid) return;
+    vid.addEventListener('canplay', function() {
+      vid.style.display = 'block';
+      if (img) img.style.display = 'none';
+    }, { once: true });
+    vid.addEventListener('error', function() {
+      vid.style.display = 'none';
+      if (img) img.style.display = 'block';
+    }, { once: true });
+  });
+
+  function switchTab(e, id) {
+    // Pause all videos in hidden tabs
+    ['morning','learning','break','clubs','wrapup'].forEach(tid => {
+      const v = document.getElementById('vid-' + tid);
+      if (v) v.pause();
+    });
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    e.target.classList.add('active');
+    document.getElementById('tab-' + id).classList.add('active');
+    // Play the active tab's video if loaded
+    const activeVid = document.getElementById('vid-' + id);
+    if (activeVid && activeVid.style.display !== 'none' && activeVid.readyState >= 2) activeVid.play();
+  }
+</script>
+
+</body>
+</html>
