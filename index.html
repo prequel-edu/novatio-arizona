@@ -57,9 +57,10 @@
       animation: float-anim var(--fs, 6s) var(--fd, 0s) ease-in-out infinite;
     }
 
-    /* ─── NAV ─────────────────────────────────────────────────── */
+    /* ─── NAV — white background ──────────────────────────────── */
     nav {
-      background: var(--dark);
+      background: #FFFFFF;
+      border-bottom: 1px solid #E5E7EB;
       position: sticky;
       top: 0;
       z-index: 200;
@@ -74,8 +75,8 @@
     }
     .nav-logo img { height: 26px; width: auto; }
     .nav-right { display: flex; align-items: center; gap: 20px; }
-    .nav-phone { font-size: 14px; color: rgba(255,255,255,0.5); }
-    .nav-phone a { color: rgba(255,255,255,0.85); }
+    .nav-phone { font-size: 14px; color: #6B7280; }
+    .nav-phone a { color: var(--dark); font-weight: 600; }
     .btn-nav {
       padding: 11px 22px;
       border-radius: 10px;
@@ -102,6 +103,10 @@
       grid-template-columns: 1fr 420px;
       gap: 56px;
       align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-left-col {
       position: relative;
       z-index: 2;
     }
@@ -134,21 +139,32 @@
       border: 1px solid rgba(252,75,12,0.2);
       margin-bottom: 20px;
     }
-    .hero h1 {
-      font-size: clamp(36px, 4.8vw, 58px);
+
+    /* ─── HERO BANNER (orange pill) ─────────────────────────── */
+    .hero-banner {
+      display: inline-flex;
+      align-items: center;
+      gap: 20px;
+      background: #FC4B0C;
+      border-radius: 999px;
+      padding: 18px 36px;
+      margin-bottom: 18px;
+      color: #FFFFAC;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: clamp(24px, 3vw, 40px);
       font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .banner-diamond { width: 32px; height: 32px; filter: brightness(0) invert(1); }
+    .hero-sub-heading {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: clamp(28px, 3.5vw, 46px);
+      font-weight: 800;
+      color: #222625;
       letter-spacing: -1.5px;
-      color: var(--dark);
-      margin-bottom: 8px;
-      line-height: 1.1;
+      margin-bottom: 18px;
     }
-    .hero h1 .handwrite {
-      font-family: 'Indie Flower', cursive;
-      font-size: 1.08em;
-      font-weight: 400;
-      color: var(--orange);
-      letter-spacing: 0;
-    }
+
     .hero-sub {
       font-size: 17px;
       color: var(--muted);
@@ -172,11 +188,17 @@
     }
 
     /* ─── FORM CARD ───────────────────────────────────────────── */
+    #apply-form {
+      position: relative;
+      z-index: 10;
+    }
     .form-card {
       background: #fff;
       border-radius: 20px;
       padding: 28px 28px 24px;
       box-shadow: 0 8px 40px rgba(34,38,37,.12), 0 2px 8px rgba(34,38,37,.06);
+      position: relative;
+      z-index: 10;
     }
     .form-badge {
       display: inline-flex;
@@ -323,110 +345,121 @@
       border: 0;
     }
 
-    /* ─── VIDEO TABS (A Day at Novatio) ───────────────────────── */
-    /* Layout: video LEFT, tabs RIGHT — matching novatio.school */
+    /* ─── A DAY AT NOVATIO — tabs LEFT, video RIGHT ───────────── */
+    .day-section { background: var(--cream); }
+    .day-heading {
+      text-align: center;
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      margin-bottom: 12px;
+    }
+    .day-sophie-quote {
+      text-align: center;
+      font-style: italic;
+      font-size: 16px;
+      color: #6B7280;
+      margin-bottom: 48px;
+    }
     .day-grid {
       display: grid;
-      grid-template-columns: 1fr 320px;
-      gap: 40px;
-      margin-top: 48px;
+      grid-template-columns: 38% 1fr;
+      gap: 36px;
       align-items: start;
     }
-    .day-video-col { position: relative; }
+    .day-tabs-col { display: flex; flex-direction: column; }
+    .day-tab {
+      padding: 16px 0;
+      border-bottom: 1px solid #E5E7EB;
+      cursor: pointer;
+      transition: opacity .2s;
+      background: none;
+      border-left: none;
+      border-right: none;
+      border-top: none;
+      text-align: left;
+      width: 100%;
+    }
+    .day-tab:first-child { border-top: 1px solid #E5E7EB; }
+    .day-tab.inactive { opacity: 0.5; }
+    .day-tab-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+    .day-tab-icon { font-size: 16px; color: var(--tc); }
+    .day-tab-title {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: #222625;
+    }
+    .day-tab.inactive .day-tab-title { font-weight: 500; }
+    .day-tab-desc {
+      font-size: 13px;
+      color: #6B7280;
+      line-height: 1.6;
+      padding-left: 26px;
+    }
+    .day-tab-bar {
+      height: 3px;
+      background: var(--tc);
+      border-radius: 2px;
+      margin-top: 10px;
+      width: 0%;
+      transition: width .1s linear;
+    }
+    .day-video-col { display: flex; flex-direction: column; }
     .day-video-box {
       border-radius: 18px;
       overflow: hidden;
-      background: #ddd;
-      aspect-ratio: 16/10;
-      border: 3px solid var(--orange);
+      border: 3px solid #FC4B0C;
       transition: border-color .4s;
+      aspect-ratio: 16/10;
+      background: #ddd;
     }
-    .day-video-box video,
-    .day-video-box img {
+    .day-video-box video, .day-video-box img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
-    .day-info { margin-top: 20px; }
-    .day-info h3 {
-      font-size: 21px;
-      font-weight: 800;
-      color: var(--dark);
-      margin-bottom: 8px;
-    }
-    .day-info p { font-size: 15px; color: var(--muted); line-height: 1.7; }
-    .day-quote {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 14px 18px;
-      margin-top: 14px;
-      font-size: 14px;
-      font-style: italic;
-      color: var(--dark);
-      line-height: 1.6;
-    }
-    .day-quote cite { display: block; font-style: normal; font-size: 12px; color: var(--muted); margin-top: 6px; }
 
-    /* Tab list */
-    .day-tabs { display: flex; flex-direction: column; gap: 6px; }
-    .day-tab {
-      display: block;
-      width: 100%;
-      text-align: left;
+    /* ─── SCHEDULE SECTION ───────────────────────────────────── */
+    .schedule-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .sched-row {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      align-items: start;
+      gap: 20px;
       background: #fff;
-      border: 1.5px solid var(--border);
       border-radius: 14px;
-      padding: 14px 16px 10px;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-      transition: border-color .25s, background .25s;
+      padding: 20px 24px;
+      border-left: 4px solid var(--sc);
     }
-    .day-tab:hover { border-color: #ccc; }
-    .day-tab.active {
-      border-color: var(--tc, var(--orange));
-      background: rgba(252,75,12,.03);
-    }
-    .day-tab-top { display: flex; align-items: center; gap: 10px; margin-bottom: 3px; }
-    .day-tab-dot {
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      background: var(--tc, var(--orange));
-      flex-shrink: 0;
-    }
-    .day-tab-name {
+    .sched-time {
       font-family: 'Bricolage Grotesque', sans-serif;
       font-size: 14px;
       font-weight: 700;
-      color: var(--dark);
+      color: var(--sc);
+      padding-top: 2px;
     }
-    .day-tab-time {
-      font-size: 11px;
-      color: var(--muted);
-      padding-left: 20px;
-      letter-spacing: .3px;
+    .sched-title {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 17px;
+      font-weight: 800;
+      margin-bottom: 4px;
     }
-    /* Progress bar at bottom of active tab */
-    .day-tab-bar {
-      position: absolute;
-      bottom: 0; left: 0;
-      height: 3px;
-      background: var(--tc, var(--orange));
-      width: 0%;
-      transition: width .1s linear;
-      border-radius: 0 3px 3px 0;
-    }
+    .sched-desc { font-size: 14px; color: #6B7280; line-height: 1.6; }
 
-    /* ─── DIFF CARDS ("What sets us apart.") ────────────────────
-       Matching the exact novatio.school screenshot:
-       - Cream/warm section bg
-       - "apart" underlined in heading
-       - 3 full-color cards: blue, purple, orange
-       - White text, large rounded corners
-       - Diamond corner decoratives
-    ────────────────────────────────────────────────────────────── */
+    /* ─── DIFF CARDS ("What sets us apart.") ─────────────────── */
     .apart-section { background: var(--warm); }
     .apart-h2 {
       font-size: clamp(32px, 4vw, 52px);
@@ -578,7 +611,7 @@
 
     /* ─── VS COMPARISON ───────────────────────────────────────── */
     .vs-wrap { max-width: 860px; margin: 48px auto 0; }
-    .vs-grid { display: grid; grid-template-columns: 1fr 56px 1fr; align-items: start; }
+    .vs-grid { display: grid; grid-template-columns: 1fr 100px 1fr; align-items: start; }
     .vs-col { border-radius: 18px; overflow: hidden; }
     .vs-n { background: var(--dark); color: #fff; }
     .vs-t { background: #fff; border: 1.5px solid var(--border); }
@@ -591,7 +624,7 @@
     .chk { color: var(--orange); font-weight: 700; flex-shrink: 0; }
     .xmark { color: #D1D5DB; flex-shrink: 0; }
     .vs-mid { display: flex; align-items: center; justify-content: center; padding-top: 72px; }
-    .vs-star { width: 48px; height: 48px; }
+    .vs-star { width: 90px; height: 90px; }
 
     /* ─── ESA ─────────────────────────────────────────────────── */
     .esa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
@@ -775,9 +808,6 @@
       .hero-deco-tyiir, .hero-deco-group { display: none; }
       .apart-grid { grid-template-columns: 1fr; }
       .day-grid { grid-template-columns: 1fr; }
-      .day-tabs { flex-direction: row; flex-wrap: wrap; gap: 8px; }
-      .day-tab { flex: 1; min-width: 130px; }
-      .day-tab-time { display: none; }
       .clubs-grid { grid-template-columns: 1fr 1fr; }
       .ty-grid { grid-template-columns: 1fr; gap: 36px; }
       .vs-grid { grid-template-columns: 1fr; }
@@ -787,10 +817,13 @@
     }
     @media (max-width: 640px) {
       .frow { grid-template-columns: 1fr; }
+      .hero-banner { padding: 14px 22px; gap: 12px; }
+      .banner-diamond { width: 22px; height: 22px; }
       .apart-grid { grid-template-columns: 1fr; }
       .clubs-grid { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr; }
       .tdiv { display: none; }
+      .sched-row { grid-template-columns: 76px 1fr; gap: 12px; }
     }
   </style>
 </head>
@@ -799,24 +832,25 @@
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TPV3VJJK" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ══════════════════════════════════════════════════
-     NAV
+     NAV — white background, dark logo
 ══════════════════════════════════════════════════ -->
 <nav>
   <div class="nav-inner">
-    <a href="https://novatio.school">
-      <!-- White logo on dark nav -->
-      <img src="https://cdn.prod.website-files.com/687c139d7d1362f24d06d2ba/687c2d31c0455a56ea3af021_Novatio%20Primary%20Logo%20-%20White.svg"
-           alt="Novatio" style="height:26px;width:auto;" />
+    <a href="https://novatio.school" class="nav-logo">
+      <!-- Dark logo on white nav -->
+      <img src="https://cdn.prod.website-files.com/687c139d7d1362f24d06d2ba/687c2d0dc0455a56ea3aef16_Novatio%20Primary%20Logo%20-%20Dark.svg"
+           alt="Novatio" style="height:26px;width:auto;"
+           onerror="this.src='https://cdn.prod.website-files.com/687c139d7d1362f24d06d2ba/687c2d31c0455a56ea3af021_Novatio%20Primary%20Logo%20-%20White.svg'" />
     </a>
     <div class="nav-right">
       <span class="nav-phone"><a href="tel:520-375-3356">(520) 375-3356</a></span>
-      <button class="btn-nav" onclick="document.getElementById('apply-form').scrollIntoView({behavior:'smooth'})">Check Eligibility</button>
+      <button class="btn-nav" onclick="document.getElementById('apply-form').scrollIntoView({behavior:'smooth'})">Get Started</button>
     </div>
   </div>
 </nav>
 
 <!-- ══════════════════════════════════════════════════
-     HERO — cream background, floating decoratives
+     HERO — cream background, orange pill banner
 ══════════════════════════════════════════════════ -->
 <section class="hero">
 
@@ -838,23 +872,30 @@
 
   <div class="container">
     <div class="hero-grid">
-      <div>
+      <div class="hero-left-col">
         <div class="hero-eyebrow">🌵 ESA Approved · Grades 4–8 · Arizona</div>
-        <h1>Master academics in 2 hours.<br />Spend afternoons on real world skills.</h1>
-        <p class="hero-sub">Novatio is a private, virtual, AI-driven, teacher-guided school for grades 4–8. Students master academics by lunch, then spend afternoons on real-world skills. <strong>Arizona families pay $0 through the ESA program.</strong></p>
+        <div class="hero-banner">
+          <img src="https://cdn.prod.website-files.com/687c139d7d1362f24d06d2ba/68872e96c4ea4b4455b8f756_Diamond.svg" alt="" class="banner-diamond" />
+          <span>Master academics in 2 hours.</span>
+          <img src="https://cdn.prod.website-files.com/687c139d7d1362f24d06d2ba/68872e96c4ea4b4455b8f756_Diamond.svg" alt="" class="banner-diamond" />
+        </div>
+        <h2 class="hero-sub-heading">Spend afternoons on real world skills.</h2>
+        <p class="hero-sub">Novatio is a private, virtual, AI-driven, teacher-guided school for grades 4–8. Students master academics by lunch, then spend afternoons on real-world skills. Whether your student is gifted, neurotypical, or needs extra support — Novatio's AI adapts to them, not the other way around. <strong>Arizona families pay $0 through the ESA program.</strong></p>
         <div class="hero-tags">
           <span class="htag">✓ ESA Approved</span>
           <span class="htag">✓ Cognia Accredited</span>
           <span class="htag">✓ Grades 4–8</span>
           <span class="htag">✓ $0 Tuition</span>
           <span class="htag">✓ AI-Driven</span>
+          <span class="htag">✓ 2 Clubs per Session</span>
+          <span class="htag">✓ All Applicants Accepted</span>
         </div>
       </div>
 
       <div id="apply-form">
         <div class="form-card">
           <div class="form-badge">🔥 Limited Spots for 2025–26</div>
-          <h3>Check Your Eligibility</h3>
+          <h3>Start Your Application</h3>
           <p class="fsub">Takes less than 2 minutes. No commitment required.</p>
           <form onsubmit="handleSubmit(event)">
             <div class="frow">
@@ -878,7 +919,7 @@
               <div class="fg"><label>Zip Code *</label><input type="text" name="zip" placeholder="85001" maxlength="5" required /></div>
             </div>
             <p class="consent">By submitting, you agree to receive texts and calls from Novatio about your application. Reply STOP to opt out. <a href="https://novatio.school/privacy-policy">Privacy Policy</a>.</p>
-            <button type="submit" class="btn-submit">Check Eligibility →</button>
+            <button type="submit" class="btn-submit">Get Started with Your Application →</button>
           </form>
           <p class="form-trust">🔒 Secure · No commitment required</p>
         </div>
@@ -939,74 +980,125 @@
 </section>
 
 <!-- ══════════════════════════════════════════════════
-     A DAY AT NOVATIO — video LEFT, tabs RIGHT
+     A DAY AT NOVATIO — tabs LEFT, video RIGHT
+     Matches novatio.school layout
 ══════════════════════════════════════════════════ -->
-<section class="section section-warm">
+<section class="section day-section">
   <div class="container">
-    <div class="section-label">Daily Schedule</div>
-    <h2 class="section-h2">A Day at Novatio</h2>
-    <p class="section-sub">Mornings for academics. Afternoons for real-world skills.</p>
+    <h2 class="day-heading">A day at Novatio</h2>
+    <p class="day-sophie-quote">"I really like how I can learn at my own pace, and be able to go ahead of my grade." — Sophie</p>
 
     <div class="day-grid">
-      <!-- Video + info (LEFT) -->
+      <!-- Tabs (LEFT) -->
+      <div class="day-tabs-col" id="day-tabs">
+
+        <button class="day-tab active" style="--tc:#FC4B0C;" data-tab="morning" onclick="switchTab(this,'morning')">
+          <div class="day-tab-header">
+            <span class="day-tab-icon" style="color:#FC4B0C;">☀</span>
+            <span class="day-tab-title">Morning Launch</span>
+          </div>
+          <div class="day-tab-desc">Instead of jumping straight into lessons, we play games — like drawing competitions, solving puzzles, or navigating complex escape rooms.</div>
+          <div class="day-tab-bar" id="bar-morning" style="--tc:#FC4B0C;"></div>
+        </button>
+
+        <button class="day-tab inactive" style="--tc:#FF9437;" data-tab="learning" onclick="switchTab(this,'learning')">
+          <div class="day-tab-header">
+            <span class="day-tab-icon" style="color:#FF9437;">&#x3A3;</span>
+            <span class="day-tab-title">2-Hour Learning</span>
+          </div>
+          <div class="day-tab-desc">Every learner follows their own path. This could mean a student can be grade 3 math and grade 7 social studies!</div>
+          <div class="day-tab-bar" id="bar-learning" style="--tc:#FF9437;"></div>
+        </button>
+
+        <button class="day-tab inactive" style="--tc:#6BACF1;" data-tab="break" onclick="switchTab(this,'break')">
+          <div class="day-tab-header">
+            <span class="day-tab-icon" style="color:#6BACF1;">&#x23F8;</span>
+            <span class="day-tab-title">Break Time</span>
+          </div>
+          <div class="day-tab-desc">After a focused morning, it's time for a break to recharge and enjoy time together.</div>
+          <div class="day-tab-bar" id="bar-break" style="--tc:#6BACF1;"></div>
+        </button>
+
+        <button class="day-tab inactive" style="--tc:#C37AD6;" data-tab="clubs" onclick="switchTab(this,'clubs')">
+          <div class="day-tab-header">
+            <span class="day-tab-icon" style="color:#C37AD6;">&#x2699;</span>
+            <span class="day-tab-title">Novatio Clubs</span>
+          </div>
+          <div class="day-tab-desc">Hands-on workshops that build real-world skills alongside friends.</div>
+          <div class="day-tab-bar" id="bar-clubs" style="--tc:#C37AD6;"></div>
+        </button>
+
+        <button class="day-tab inactive" style="--tc:#FC4B0C;" data-tab="wrapup" onclick="switchTab(this,'wrapup')">
+          <div class="day-tab-header">
+            <span class="day-tab-icon" style="color:#FC4B0C;">🏠</span>
+            <span class="day-tab-title">2PM Wrap Up</span>
+          </div>
+          <div class="day-tab-desc">Homework-free means more time with family, but for many students, the learning doesn't stop there!</div>
+          <div class="day-tab-bar" id="bar-wrapup" style="--tc:#FC4B0C;"></div>
+        </button>
+
+      </div>
+
+      <!-- Video (RIGHT) -->
       <div class="day-video-col">
         <div class="day-video-box" id="day-video-box">
           <video id="day-video" muted playsinline autoplay loop style="display:none;"></video>
           <img id="day-img" src="./images/image-78.png" alt="" />
         </div>
-        <div class="day-info">
-          <h3 id="day-title">Instead of jumping straight into lessons, we play games</h3>
-          <p id="day-desc">Drawing competitions, solving puzzles, or navigating complex escape rooms. We warm up the mind before diving into the day's curriculum.</p>
-          <div class="day-quote" id="day-quote">
-            <p>"I really like how I can learn at my own pace, and be able to go ahead of my grade."</p>
-            <cite>Sophie, Novatio student</cite>
-          </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     DAILY SAMPLE SCHEDULE
+══════════════════════════════════════════════════ -->
+<section class="section section-white" id="schedule">
+  <div class="container">
+    <div class="section-label" style="text-align:center;">Sample Day</div>
+    <h2 class="section-h2" style="text-align:center;margin-bottom:48px;">A typical Novatio school day</h2>
+    <div class="schedule-list">
+
+      <div class="sched-row" style="--sc:#FC4B0C;">
+        <div class="sched-time">8:30 AM</div>
+        <div>
+          <div class="sched-title">Morning Launch</div>
+          <div class="sched-desc">We start with a game — puzzles, escape rooms, or drawing competitions to warm up the brain.</div>
         </div>
       </div>
 
-      <!-- Tabs (RIGHT) -->
-      <div class="day-tabs" id="day-tabs">
-        <button class="day-tab active" style="--tc:#FC4B0C;" data-tab="morning" onclick="switchTab(this,'morning')">
-          <div class="day-tab-top">
-            <div class="day-tab-dot"></div>
-            <span class="day-tab-name">Morning Launch</span>
-          </div>
-          <div class="day-tab-time">8:30 – 9:00 am</div>
-          <div class="day-tab-bar" id="bar-morning"></div>
-        </button>
-        <button class="day-tab" style="--tc:#FF9437;" data-tab="learning" onclick="switchTab(this,'learning')">
-          <div class="day-tab-top">
-            <div class="day-tab-dot"></div>
-            <span class="day-tab-name">2-Hour Learning</span>
-          </div>
-          <div class="day-tab-time">9:00 – 11:00 am</div>
-          <div class="day-tab-bar" id="bar-learning"></div>
-        </button>
-        <button class="day-tab" style="--tc:#6BACF1;" data-tab="break" onclick="switchTab(this,'break')">
-          <div class="day-tab-top">
-            <div class="day-tab-dot"></div>
-            <span class="day-tab-name">Break Time</span>
-          </div>
-          <div class="day-tab-time">11:00 – 11:30 am</div>
-          <div class="day-tab-bar" id="bar-break"></div>
-        </button>
-        <button class="day-tab" style="--tc:#C37AD6;" data-tab="clubs" onclick="switchTab(this,'clubs')">
-          <div class="day-tab-top">
-            <div class="day-tab-dot"></div>
-            <span class="day-tab-name">Novatio Clubs</span>
-          </div>
-          <div class="day-tab-time">11:30 am – 2:00 pm</div>
-          <div class="day-tab-bar" id="bar-clubs"></div>
-        </button>
-        <button class="day-tab" style="--tc:#FC4B0C;" data-tab="wrapup" onclick="switchTab(this,'wrapup')">
-          <div class="day-tab-top">
-            <div class="day-tab-dot"></div>
-            <span class="day-tab-name">2PM Wrap Up</span>
-          </div>
-          <div class="day-tab-time">2:00 pm</div>
-          <div class="day-tab-bar" id="bar-wrapup"></div>
-        </button>
+      <div class="sched-row" style="--sc:#FF9437;">
+        <div class="sched-time">9:00 AM</div>
+        <div>
+          <div class="sched-title">2-Hour Learning</div>
+          <div class="sched-desc">Core academics, fully personalized. Your student works at their exact level — no wasted time, no boredom.</div>
+        </div>
       </div>
+
+      <div class="sched-row" style="--sc:#6BACF1;">
+        <div class="sched-time">11:00 AM</div>
+        <div>
+          <div class="sched-title">Break Time</div>
+          <div class="sched-desc">Social time to recharge before the afternoon.</div>
+        </div>
+      </div>
+
+      <div class="sched-row" style="--sc:#C37AD6;">
+        <div class="sched-time">11:30 AM</div>
+        <div>
+          <div class="sched-title">Novatio Clubs</div>
+          <div class="sched-desc">Students choose 2 Clubs per Session from options like coding, entrepreneurship, financial literacy, and robotics.</div>
+        </div>
+      </div>
+
+      <div class="sched-row" style="--sc:#FC4B0C;">
+        <div class="sched-time">2:00 PM</div>
+        <div>
+          <div class="sched-title">School Done! 🎉</div>
+          <div class="sched-desc">No homework. Ever. School ends at 2PM and your student's afternoon is theirs.</div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1023,16 +1115,16 @@
       <div class="acard blue">
         <!-- Corner diamond decoratives -->
         <div class="acard-deco" style="top:16px;left:16px;">
-          <img src="https://cdn.prod.website-files.com/687c139d7d1362f24d06d2ba/68872e96c4ea4b4455b8f756_Diamond.svg" alt="" />
+          <img src="https://cdn.prod.website-files.com/687c139d7d1362f24d06d2ba/68872e96c4ea4b4455b8f756_Diamond.svg" alt="" class="float" />
         </div>
         <div class="acard-deco" style="top:16px;right:16px;">
-          <img src="https://cdn.prod.website-files.com/687c139d7d1362f24d06d2ba/68872e96c4ea4b4455b8f756_Diamond.svg" alt="" />
+          <img src="https://cdn.prod.website-files.com/687c139d7d1362f24d06d2ba/68872e96c4ea4b4455b8f756_Diamond.svg" alt="" class="float" />
         </div>
         <div class="acard-deco" style="bottom:16px;left:16px;">
-          <img src="https://cdn.prod.website-files.com/687c139d7d1362f24d06d2ba/68872e96c4ea4b4455b8f756_Diamond.svg" alt="" />
+          <img src="https://cdn.prod.website-files.com/687c139d7d1362f24d06d2ba/68872e96c4ea4b4455b8f756_Diamond.svg" alt="" class="float" />
         </div>
         <div class="acard-deco" style="bottom:16px;right:16px;">
-          <img src="https://cdn.prod.website-files.com/687c139d7d1362f24d06d2ba/68872e96c4ea4b4455b8f756_Diamond.svg" alt="" />
+          <img src="https://cdn.prod.website-files.com/687c139d7d1362f24d06d2ba/68872e96c4ea4b4455b8f756_Diamond.svg" alt="" class="float" />
         </div>
         <h3>Master Academics in 2 Hours</h3>
         <p>Mornings are devoted to core academics, where students learn twice the curriculum and advance beyond peers in just two hours a day. Our school day is designed to eliminate boredom and wasted time.</p>
@@ -1041,16 +1133,16 @@
       <!-- Card 2: Purple -->
       <div class="acard purple">
         <div class="acard-deco" style="top:16px;left:16px;">
-          <img src="https://cdn.prod.website-files.com/687c139d7d1362f24d06d2ba/68918244740745ee51e64115_Circle3.svg" alt="" />
+          <img src="https://cdn.prod.website-files.com/687c139d7d1362f24d06d2ba/68918244740745ee51e64115_Circle3.svg" alt="" class="float" />
         </div>
         <div class="acard-deco" style="top:16px;right:16px;">
-          <img src="https://cdn.prod.website-files.com/687c139d7d1362f24d06d2ba/68872e96c4ea4b4455b8f756_Diamond.svg" alt="" />
+          <img src="https://cdn.prod.website-files.com/687c139d7d1362f24d06d2ba/68872e96c4ea4b4455b8f756_Diamond.svg" alt="" class="float" />
         </div>
         <div class="acard-deco" style="bottom:16px;left:16px;">
-          <img src="https://cdn.prod.website-files.com/687c139d7d1362f24d06d2ba/68872e96c4ea4b4455b8f756_Diamond.svg" alt="" />
+          <img src="https://cdn.prod.website-files.com/687c139d7d1362f24d06d2ba/68872e96c4ea4b4455b8f756_Diamond.svg" alt="" class="float" />
         </div>
         <div class="acard-deco" style="bottom:16px;right:16px;">
-          <img src="https://cdn.prod.website-files.com/687c139d7d1362f24d06d2ba/68872e96c4ea4b4455b8f756_Diamond.svg" alt="" />
+          <img src="https://cdn.prod.website-files.com/687c139d7d1362f24d06d2ba/68872e96c4ea4b4455b8f756_Diamond.svg" alt="" class="float" />
         </div>
         <h3>AI-Driven Personalization</h3>
         <p>Novatio's AI customizes a student's learning plan to plug gaps where they're struggling and challenge them where they're thriving. Plus, our AI tutor is there to offer personalized help and feedback at lightning speed.</p>
@@ -1059,19 +1151,19 @@
       <!-- Card 3: Orange -->
       <div class="acard orange">
         <div class="acard-deco" style="top:16px;left:16px;">
-          <img src="https://cdn.prod.website-files.com/687c139d7d1362f24d06d2ba/688afdda517192c8bc9177b1_Diff%20Icon%203.svg" alt="" />
+          <img src="https://cdn.prod.website-files.com/687c139d7d1362f24d06d2ba/688afdda517192c8bc9177b1_Diff%20Icon%203.svg" alt="" class="float" />
         </div>
         <div class="acard-deco" style="top:16px;right:16px;">
-          <img src="https://cdn.prod.website-files.com/687c139d7d1362f24d06d2ba/68872e96c4ea4b4455b8f756_Diamond.svg" alt="" />
+          <img src="https://cdn.prod.website-files.com/687c139d7d1362f24d06d2ba/68872e96c4ea4b4455b8f756_Diamond.svg" alt="" class="float" />
         </div>
         <div class="acard-deco" style="bottom:16px;left:16px;">
-          <img src="https://cdn.prod.website-files.com/687c139d7d1362f24d06d2ba/68872e96c4ea4b4455b8f756_Diamond.svg" alt="" />
+          <img src="https://cdn.prod.website-files.com/687c139d7d1362f24d06d2ba/68872e96c4ea4b4455b8f756_Diamond.svg" alt="" class="float" />
         </div>
         <div class="acard-deco" style="bottom:16px;right:16px;">
-          <img src="https://cdn.prod.website-files.com/687c139d7d1362f24d06d2ba/68872e96c4ea4b4455b8f756_Diamond.svg" alt="" />
+          <img src="https://cdn.prod.website-files.com/687c139d7d1362f24d06d2ba/68872e96c4ea4b4455b8f756_Diamond.svg" alt="" class="float" />
         </div>
         <h3>Afternoons for Real World</h3>
-        <p>Afternoons are free for pursuing their passions and developing real world skills alongside friends in our Novatio Clubs — think everything from learning how to start a business to developing an app to mastering chess. Students choose 2 clubs per day.</p>
+        <p>Afternoons are free for pursuing their passions and developing real world skills alongside friends in our Novatio Clubs — think everything from learning how to start a business to developing an app to mastering chess. Students choose 2 Clubs per Session.</p>
       </div>
 
     </div>
@@ -1085,7 +1177,7 @@
   <div class="container">
     <div class="section-label">Afternoon Clubs</div>
     <h2 class="section-h2">Clubs that go beyond the classroom</h2>
-    <p class="section-sub" style="margin-bottom:24px;">Students choose <strong>2 clubs per day</strong> to explore real-world skills. Level Up runs for everyone, every session.</p>
+    <p class="section-sub" style="margin-bottom:24px;">Students choose <strong>2 Clubs per Session</strong> to explore real-world skills. Level Up runs for everyone, every session.</p>
 
     <div class="clubs-note">
       <svg width="16" height="16" fill="none" stroke="#FC4B0C" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:2px;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
@@ -1140,7 +1232,7 @@
 </section>
 
 <!-- ══════════════════════════════════════════════════
-     TYIIR TESTIMONIAL — orange bg
+     TYIIR TESTIMONIAL — orange bg (stays orange)
 ══════════════════════════════════════════════════ -->
 <section class="ty-section">
   <div class="container">
@@ -1173,9 +1265,9 @@
 </section>
 
 <!-- ══════════════════════════════════════════════════
-     VS COMPARISON
+     VS COMPARISON — cream background
 ══════════════════════════════════════════════════ -->
-<section class="section section-warm">
+<section class="section section-cream">
   <div class="container">
     <div style="text-align:center;" class="section-label">The Difference</div>
     <h2 class="section-h2" style="text-align:center;">Novatio vs. traditional school</h2>
@@ -1188,7 +1280,7 @@
           <div class="vs-row"><span class="chk">✓</span> Live teachers · small classes</div>
           <div class="vs-row"><span class="chk">✓</span> Academic support team</div>
           <div class="vs-row"><span class="chk">✓</span> No homework — just real work</div>
-          <div class="vs-row"><span class="chk">✓</span> 2 clubs per day, real-world skills</div>
+          <div class="vs-row"><span class="chk">✓</span> 2 Clubs per Session, real-world skills</div>
           <div class="vs-row"><span class="chk">✓</span> Built for diverse learning needs</div>
         </div>
         <div class="vs-mid">
@@ -1256,7 +1348,7 @@
           <div class="esa-universal">
             <strong>Universal eligibility.</strong> Unlike programs that require financial need or a disability, Arizona's ESA is open to every K–12 student in the state.
           </div>
-          <button class="btn-esa" onclick="document.getElementById('apply-form').scrollIntoView({behavior:'smooth'})">Apply for ESA Now →</button>
+          <button class="btn-esa" onclick="document.getElementById('apply-form').scrollIntoView({behavior:'smooth'})">Get Started with Your Application →</button>
         </div>
       </div>
     </div>
@@ -1302,7 +1394,7 @@
   <div class="container" style="position:relative;z-index:1;">
     <h2>Ready to give your student a better education?</h2>
     <p>Join Arizona families who've discovered a smarter way to learn — for free.</p>
-    <button class="btn-cta" onclick="document.getElementById('apply-form').scrollIntoView({behavior:'smooth'})">Check Your Eligibility</button>
+    <button class="btn-cta" onclick="document.getElementById('apply-form').scrollIntoView({behavior:'smooth'})">Get Started with Your Application →</button>
     <p class="cta-sub">Universal ESA · Every Arizona student qualifies · All applicants accepted · $0 tuition</p>
   </div>
 </section>
@@ -1412,33 +1504,18 @@ async function handleSubmit(e) {
 const TABS = {
   morning: {
     src:'./videos/morning launch.mp4', img:'./images/image-78.png', color:'#FC4B0C',
-    title:'Instead of jumping straight into lessons, we play games',
-    desc:'Drawing competitions, solving puzzles, or navigating complex escape rooms. We warm up the mind before diving into the day\'s curriculum.',
-    quote:'"I really like how I can learn at my own pace, and be able to go ahead of my grade."', cite:'Sophie, Novatio student',
   },
   learning: {
     src:'./videos/learning.mp4', img:'./images/image-79.png', color:'#FF9437',
-    title:'Mornings devoted to core academics',
-    desc:'Every learner follows their own path. A student can be grade 3 in math and grade 7 in social studies. School day is designed to eliminate boredom and wasted time.',
-    quote:null, cite:null,
   },
   break: {
     src:'./videos/break.mp4', img:'./images/image-80.png', color:'#6BACF1',
-    title:'After a focused morning, it\'s time to recharge',
-    desc:'Students take a break to enjoy time together and step away from screens. Then it\'s on to the best part of the day.',
-    quote:null, cite:null,
   },
   clubs: {
     src:'./videos/clubs.mp4', img:'./images/image-81.png', color:'#C37AD6',
-    title:'Afternoons for real-world skills — 2 clubs per day',
-    desc:'Hands-on clubs where students build real-world skills: entrepreneurship, coding, financial literacy, robotics, and more. Students choose 2 clubs per day.',
-    quote:'"Tyiir launched his own custom T-shirt business with the skills he built at Novatio."', cite:"Ty's Story",
   },
   wrapup: {
     src:'./videos/wrap up.mp4', img:'./images/image-82.png', color:'#FC4B0C',
-    title:'No homework, just real-world work',
-    desc:'School wraps up by 2PM. Homework-free means more time with family. But for many students, the learning doesn\'t stop.',
-    quote:null, cite:null,
   },
 };
 
@@ -1448,7 +1525,12 @@ let progInterval = null;
 function switchTab(btn, id) {
   if (progInterval) { clearInterval(progInterval); progInterval = null; }
 
-  document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
+  // Update active/inactive classes on all tabs
+  document.querySelectorAll('.day-tab').forEach(t => {
+    t.classList.remove('active');
+    t.classList.add('inactive');
+  });
+  btn.classList.remove('inactive');
   btn.classList.add('active');
 
   // Reset all progress bars
@@ -1459,18 +1541,6 @@ function switchTab(btn, id) {
 
   activeTab = id;
   const t = TABS[id];
-
-  // Update text
-  document.getElementById('day-title').textContent = t.title;
-  document.getElementById('day-desc').textContent  = t.desc;
-  const qEl = document.getElementById('day-quote');
-  if (t.quote) {
-    qEl.style.display = 'block';
-    qEl.querySelector('p').textContent    = t.quote;
-    qEl.querySelector('cite').textContent = t.cite;
-  } else {
-    qEl.style.display = 'none';
-  }
 
   // Update video border color
   document.getElementById('day-video-box').style.borderColor = t.color;
