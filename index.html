@@ -57,42 +57,64 @@
       animation: float-anim var(--fs, 6s) var(--fd, 0s) ease-in-out infinite;
     }
 
-    /* ─── HERO BANNER BOB ─────────────────────────────────────── */
+    /* ─── HERO BANNER ANIMATIONS ──────────────────────────────── */
     @keyframes banner-bob {
       0%, 100% { transform: translateY(0) rotate(-0.5deg); }
       50%       { transform: translateY(-6px) rotate(0.5deg); }
     }
+    @keyframes banner-wiggle {
+      0%   { transform: rotate(0deg); }
+      10%  { transform: rotate(-4deg) scale(1.04); }
+      25%  { transform: rotate(4deg) scale(1.04); }
+      40%  { transform: rotate(-3deg); }
+      55%  { transform: rotate(3deg); }
+      70%  { transform: rotate(-1.5deg); }
+      85%  { transform: rotate(1.5deg); }
+      100% { transform: rotate(0deg); }
+    }
     .hero-banner {
       animation: banner-bob 4s ease-in-out infinite;
+      cursor: default;
+    }
+    .hero-banner:hover {
+      animation: banner-wiggle 0.65s ease forwards;
     }
 
     /* ─── APART CARD ANIMATIONS ───────────────────────────────── */
+    .acard {
+      position: relative;
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .acard:hover {
+      transform: translateY(-8px) rotate(-0.6deg);
+      box-shadow: 0 28px 64px rgba(0,0,0,.22);
+    }
     /* Shine sweep on hover */
-    .acard { transition: transform .3s ease, box-shadow .3s ease; }
-    .acard:hover { transform: translateY(-6px) rotate(-0.8deg); box-shadow: 0 24px 60px rgba(0,0,0,.18); }
     .acard::after {
       content: '';
       position: absolute;
-      top: 0; left: -75%;
-      width: 50%; height: 100%;
-      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.25) 50%, transparent 100%);
+      top: 0; left: -90%;
+      width: 55%; height: 100%;
+      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.28) 50%, transparent 100%);
       transform: skewX(-20deg);
-      transition: left .6s ease;
+      transition: left .7s ease;
       pointer-events: none;
+      z-index: 3;
     }
-    .acard:hover::after { left: 130%; }
+    .acard:hover::after { left: 135%; }
 
-    /* Wiggle keyframe (applied by JS on section enter) */
+    /* Wiggle — triggered by IntersectionObserver on scroll-in, and on hover */
     @keyframes card-wiggle {
       0%   { transform: rotate(0deg); }
-      15%  { transform: rotate(-2deg); }
-      30%  { transform: rotate(2deg); }
-      45%  { transform: rotate(-1.5deg); }
-      60%  { transform: rotate(1.5deg); }
-      75%  { transform: rotate(-0.5deg); }
+      12%  { transform: rotate(-3deg) scale(1.02); }
+      28%  { transform: rotate(3deg) scale(1.02); }
+      44%  { transform: rotate(-2deg); }
+      60%  { transform: rotate(2deg); }
+      76%  { transform: rotate(-1deg); }
       100% { transform: rotate(0deg); }
     }
-    .acard.wiggle { animation: card-wiggle .55s ease forwards; }
+    .acard.wiggle { animation: card-wiggle .65s cubic-bezier(.36,.07,.19,.97) both; }
+    .acard.wiggle:hover { animation: card-wiggle .65s cubic-bezier(.36,.07,.19,.97) both; }
 
     /* ─── NAV — white background ──────────────────────────────── */
     nav {
@@ -1498,7 +1520,6 @@
       <!-- Copy + video (right) -->
       <div class="ty-copy">
         <div class="ty-label">Student Story</div>
-        <div class="ty-quote">"I love how you start with a different grade level so you can get a refresher on what you already know. And my teacher is amazing and the best!"</div>
         <div class="ty-byline">— Tyiir, age 10, Buckeye AZ</div>
         <p class="ty-body">Tyiir is already applying what he's learned at Novatio, launching his own custom T-shirt business with confidence and creativity.</p>
         <div class="ty-video">
@@ -1819,6 +1840,42 @@ document.addEventListener('DOMContentLoaded', function() {
   const firstBtn = document.querySelector('.day-tab[data-tab="morning"]');
   if (firstBtn) switchTab(firstBtn, 'morning');
 });
+
+// ── Apart cards: wiggle on scroll-in + hover re-trigger ────
+(function() {
+  var cards = document.querySelectorAll('.acard');
+  if (!cards.length) return;
+
+  // Stagger wiggle when section scrolls into view
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var grid = entry.target;
+        var items = grid.querySelectorAll('.acard');
+        items.forEach(function(card, i) {
+          setTimeout(function() {
+            card.classList.remove('wiggle');
+            void card.offsetWidth; // reflow
+            card.classList.add('wiggle');
+          }, i * 120);
+        });
+        observer.unobserve(grid);
+      }
+    });
+  }, { threshold: 0.25 });
+
+  var grid = document.querySelector('.apart-grid');
+  if (grid) observer.observe(grid);
+
+  // Re-wiggle on hover
+  cards.forEach(function(card) {
+    card.addEventListener('mouseenter', function() {
+      card.classList.remove('wiggle');
+      void card.offsetWidth;
+      card.classList.add('wiggle');
+    });
+  });
+})();
 
 // ── Schedule accordion ─────────────────────────────────────
 function toggleSched(header) {
