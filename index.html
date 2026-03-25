@@ -946,6 +946,122 @@
     .footer-copy { font-size: 12px; color: rgba(255,255,255,.25); }
     .cognia-footer { height: 44px; width: auto; opacity: .5; }
 
+    /* ─── PARENT QUOTES STRIP ─────────────────────────────────── */
+    .quotes-strip {
+      background: var(--cream);
+      padding: 48px 0;
+      border-bottom: 1px solid #EDE8E2;
+    }
+    .quotes-inner {
+      display: flex;
+      gap: 24px;
+      max-width: 900px;
+      margin: 0 auto;
+      align-items: stretch;
+    }
+    .quote-card {
+      flex: 1;
+      background: #fff;
+      border-radius: 20px;
+      padding: 28px 28px 24px;
+      border: 1.5px solid #EDE8E2;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .quote-mark {
+      font-size: 44px;
+      line-height: 1;
+      color: var(--orange);
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800;
+    }
+    .quote-text {
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--dark);
+      font-style: italic;
+      flex: 1;
+    }
+    .quote-by {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    /* ─── FORM QUOTE ───────────────────────────────────────────── */
+    .form-quote-block {
+      background: var(--cream);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 14px;
+      font-size: 13px;
+      font-style: italic;
+      color: #555;
+      line-height: 1.55;
+      border-left: 3px solid var(--orange);
+    }
+    .form-quote-block span { display: block; font-style: normal; font-weight: 700; color: var(--muted); margin-top: 6px; font-size: 12px; }
+
+    /* ─── MID-PAGE CTA STRIP ───────────────────────────────────── */
+    .midcta-strip {
+      background: var(--orange);
+      padding: 36px 0;
+      text-align: center;
+    }
+    .midcta-strip h3 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: clamp(18px, 2.5vw, 26px);
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .midcta-strip p { font-size: 14px; color: rgba(255,255,255,.75); margin-bottom: 20px; }
+    .btn-midcta {
+      display: inline-block;
+      background: #fff;
+      color: var(--orange);
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 16px;
+      font-weight: 800;
+      padding: 14px 36px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      transition: opacity .2s;
+    }
+    .btn-midcta:hover { opacity: .88; }
+
+    /* ─── STICKY MOBILE CTA ────────────────────────────────────── */
+    .sticky-cta {
+      display: none;
+    }
+    @media (max-width: 768px) {
+      .sticky-cta {
+        display: block;
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        z-index: 999;
+        background: var(--orange);
+        padding: 14px 20px;
+        box-shadow: 0 -4px 20px rgba(0,0,0,.15);
+      }
+      .sticky-cta button {
+        display: block;
+        width: 100%;
+        background: #fff;
+        color: var(--orange);
+        font-family: 'Bricolage Grotesque', sans-serif;
+        font-size: 16px;
+        font-weight: 800;
+        padding: 13px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+      }
+      body { padding-bottom: 72px; }
+    }
+
     /* ─── RESPONSIVE ──────────────────────────────────────────── */
     @media (max-width: 1000px) {
       .hero-grid { grid-template-columns: 1fr; }
@@ -983,7 +1099,7 @@
 ══════════════════════════════════════════════════ -->
 <nav>
   <div class="nav-inner">
-    <a href="https://novatio.school" class="nav-logo">
+    <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" class="nav-logo">
       <!-- Dark logo on white nav -->
       <img src="https://cdn.prod.website-files.com/687c139d7d1362f24d06d2ba/687c2d0dc0455a56ea3aef16_Novatio%20Primary%20Logo%20-%20Dark.svg"
            alt="Novatio" style="height:26px;width:auto;"
@@ -1026,8 +1142,8 @@
           <span>Master academics in 2 hours.</span>
           <img src="https://cdn.prod.website-files.com/687c139d7d1362f24d06d2ba/68872e96c4ea4b4455b8f756_Diamond.svg" alt="" class="banner-diamond" />
         </div>
-        <h2 class="hero-sub-heading">Spend afternoons on real world skills.</h2>
-        <p class="hero-sub">Novatio is a private, virtual, AI-driven, teacher-guided school for grades 4–8. Students master academics by lunch, then spend afternoons on real-world skills. Whether your student is gifted, neurotypical, or needs extra support — Novatio's AI adapts to them, not the other way around. <strong>Arizona families pay $0 through the ESA program.</strong></p>
+        <h1 class="hero-sub-heading">Spend afternoons on real‑world skills.</h1>
+        <p class="hero-sub">Novatio is a private, virtual, AI-driven, teacher-guided school for grades 4–8. Students master academics by lunch, then spend afternoons on real-world skills. Whether your student is gifted, neurotypical, or needs extra support — Novatio's AI adapts to them, not the other way around. <strong>Arizona families pay $0 through the ESA program — no reimbursement, you never pay anything up front.</strong></p>
         <div class="hero-tags">
           <span class="htag">✓ ESA Approved</span>
           <span class="htag">✓ Cognia Accredited</span>
@@ -1066,6 +1182,10 @@
               <div class="fg"><label>Zip Code *</label><input type="text" name="zip" placeholder="85001" maxlength="5" required /></div>
             </div>
             <p class="consent">By submitting, you agree to receive texts and calls from Novatio about your application. Reply STOP to opt out. <a href="https://novatio.school/privacy-policy">Privacy Policy</a>.</p>
+            <div class="form-quote-block">
+              "The fact that it's an AI virtual school is why I'm onboard. If you don't have these skills right now, you might not be able to enter the workforce with an edge."
+              <span>— Arizona Parent</span>
+            </div>
             <button type="submit" class="btn-submit">Get Started with Your Application →</button>
           </form>
           <p class="form-trust">🔒 Secure · No commitment required</p>
@@ -1108,6 +1228,26 @@
 </div>
 
 <!-- ══════════════════════════════════════════════════
+     PARENT QUOTES STRIP
+══════════════════════════════════════════════════ -->
+<div class="quotes-strip">
+  <div class="container">
+    <div class="quotes-inner">
+      <div class="quote-card">
+        <div class="quote-mark">"</div>
+        <div class="quote-text">The fact that it's an AI virtual school is why I'm onboard. If you don't have these skills right now, you might not be able to enter the workforce with an edge.</div>
+        <div class="quote-by">— Arizona Parent</div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-mark">"</div>
+        <div class="quote-text">I really like how I can learn at my own pace, and be able to go ahead of my grade.</div>
+        <div class="quote-by">— Sophie, Novatio Student</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
      VIDEO INTRO
 ══════════════════════════════════════════════════ -->
 <section class="section section-white">
@@ -1121,6 +1261,33 @@
           title="What is Novatio?"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     TYIIR TESTIMONIAL — orange bg
+══════════════════════════════════════════════════ -->
+<section class="ty-section">
+  <div class="container">
+    <div class="ty-grid">
+      <div class="ty-img-wrap">
+        <img
+          src="https://cdn.prod.website-files.com/687c139d7d1362f24d06d2ba/68a6ccc689be4ce4881ecee5_Testimonial.svg"
+          alt="Tyiir's testimonial"
+          onerror="this.style.display='none'" />
+      </div>
+      <div class="ty-copy">
+        <div class="ty-label">Student Story</div>
+        <div class="ty-byline">— Tyiir, age 10, Buckeye AZ</div>
+        <p class="ty-body">Tyiir is already applying what he's learned at Novatio, launching his own custom T-shirt business with confidence and creativity.</p>
+        <div class="ty-video">
+          <iframe src="https://www.youtube.com/embed/kIADBDw6N4s?rel=0&modestbranding=1"
+            title="Tyiir's Story — Novatio Student"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
       </div>
     </div>
   </div>
@@ -1454,6 +1621,15 @@
   </div>
 </section>
 
+<!-- MID-PAGE CTA -->
+<div class="midcta-strip">
+  <div class="container">
+    <h3>Ready to see if Novatio is right for your student?</h3>
+    <p>Takes less than 2 minutes. No commitment required. All applicants accepted.</p>
+    <button class="btn-midcta" onclick="document.getElementById('apply-form').scrollIntoView({behavior:'smooth'})">Start Your Application →</button>
+  </div>
+</div>
+
 <!-- ══════════════════════════════════════════════════
      CLUBS
 ══════════════════════════════════════════════════ -->
@@ -1511,38 +1687,6 @@
         <p>Code a virtual robot to navigate mazes, clean up the ocean floor, and drive like a self-driving car.</p>
         <div class="club-challenge"><div class="club-challenge-lbl">The Challenge</div><p>Complete a Vex VR Robotics Challenge. Bonus levels for those who want to push further.</p></div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════════
-     TYIIR TESTIMONIAL — orange bg (stays orange)
-══════════════════════════════════════════════════ -->
-<section class="ty-section">
-  <div class="container">
-    <div class="ty-grid">
-
-      <!-- Handwritten SVG quote (left) -->
-      <div class="ty-img-wrap">
-        <img
-          src="https://cdn.prod.website-files.com/687c139d7d1362f24d06d2ba/68a6ccc689be4ce4881ecee5_Testimonial.svg"
-          alt="Tyiir's testimonial"
-          onerror="this.style.display='none'" />
-      </div>
-
-      <!-- Copy + video (right) -->
-      <div class="ty-copy">
-        <div class="ty-label">Student Story</div>
-        <div class="ty-byline">— Tyiir, age 10, Buckeye AZ</div>
-        <p class="ty-body">Tyiir is already applying what he's learned at Novatio, launching his own custom T-shirt business with confidence and creativity.</p>
-        <div class="ty-video">
-          <iframe src="https://www.youtube.com/embed/kIADBDw6N4s?rel=0&modestbranding=1"
-            title="Tyiir's Story — Novatio Student"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
@@ -1687,33 +1831,26 @@
 ══════════════════════════════════════════════════ -->
 <footer>
   <div class="container">
-    <div class="footer-grid">
+    <div class="footer-grid" style="grid-template-columns: 1.6fr 1fr 1fr;">
       <div class="footer-col">
         <img src="https://cdn.prod.website-files.com/687c139d7d1362f24d06d2ba/687c2d31c0455a56ea3af021_Novatio%20Primary%20Logo%20-%20White.svg"
              alt="Novatio" class="footer-logo" />
         <p class="footer-tagline">A private, virtual, AI-driven, teacher-guided school for grades 4–8. Arizona ESA approved.</p>
       </div>
       <div class="footer-col">
-        <h4>Program</h4>
-        <a href="https://novatio.school/curriculum">Curriculum</a>
-        <a href="https://novatio.school/admissions">Admissions</a>
-        <a href="https://novatio.school/why-novatio/about">Why Novatio</a>
-        <a href="#esa-section">Tuition & ESA</a>
-      </div>
-      <div class="footer-col">
-        <h4>Resources</h4>
-        <a href="https://www.azed.gov/esa" target="_blank" rel="noopener">ADE ESA Program ↗</a>
-        <a href="https://novatio.school/contact">Contact Admissions</a>
-        <a href="https://youtube.com/@NovatioSchool" target="_blank" rel="noopener">YouTube ↗</a>
-      </div>
-      <div class="footer-col">
         <h4>Contact</h4>
         <a href="tel:520-375-3356">(520) 375-3356</a>
         <a href="mailto:admissions@novatio.school">admissions@novatio.school</a>
+        <a href="https://youtube.com/@NovatioSchool" target="_blank" rel="noopener">YouTube ↗</a>
+      </div>
+      <div class="footer-col">
+        <h4>ESA Info</h4>
+        <a href="https://www.azed.gov/esa" target="_blank" rel="noopener">ADE ESA Program ↗</a>
+        <a href="#esa-section" onclick="document.getElementById('esa-section').scrollIntoView({behavior:'smooth'});return false;">How ESA Works</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="footer-copy">© 2025 Novatio School. Cognia-accredited private online school. Arizona ESA approved. Founded 2025.</p>
+      <p class="footer-copy">© 2025 Novatio School. Cognia-accredited private online school. Arizona ESA approved.</p>
       <img src="./images/Cognia_ACCRED-Badge-GREY-684x684 (2).png" alt="Cognia Accredited" class="cognia-footer" />
     </div>
   </div>
@@ -1896,5 +2033,11 @@ document.addEventListener('DOMContentLoaded', function() {
   if (aiden) aiden.style.display = 'flex';
 });
 </script>
+
+<!-- STICKY MOBILE CTA -->
+<div class="sticky-cta">
+  <button onclick="document.getElementById('apply-form').scrollIntoView({behavior:'smooth'})">Start Your Application — It's Free →</button>
+</div>
+
 </body>
 </html>
