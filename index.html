@@ -81,14 +81,40 @@
     }
 
     /* ─── APART CARD ANIMATIONS ───────────────────────────────── */
+
+    /* Cards start hidden/centered, expand out on scroll */
+    .apart-grid { overflow: visible; }
+
     .acard {
       position: relative;
-      transition: transform .3s ease, box-shadow .3s ease;
+      opacity: 0;
+      /* all three start centered — left card pushed right, right card pushed left */
+      transform: translateX(0) scale(0.82);
+      transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1),
+                  transform 0.7s cubic-bezier(0.22,1,0.36,1),
+                  box-shadow 0.3s ease;
     }
-    .acard:hover {
-      transform: translateY(-8px) rotate(-0.6deg);
+    /* Left card fans left */
+    .acard:nth-child(1) { transform: translateX(calc(50% + 20px)) scale(0.82); }
+    /* Center card just scales up */
+    .acard:nth-child(2) { transform: translateX(0) scale(0.82); transition-delay: 0.1s; }
+    /* Right card fans right */
+    .acard:nth-child(3) { transform: translateX(calc(-50% - 20px)) scale(0.82); transition-delay: 0.2s; }
+
+    /* Triggered by JS IntersectionObserver */
+    .apart-grid.cards-in .acard:nth-child(1),
+    .apart-grid.cards-in .acard:nth-child(2),
+    .apart-grid.cards-in .acard:nth-child(3) {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+
+    /* Hover lift after they've landed */
+    .apart-grid.cards-in .acard:hover {
+      transform: translateY(-8px) scale(1.02);
       box-shadow: 0 28px 64px rgba(0,0,0,.22);
     }
+
     /* Shine sweep on hover */
     .acard::after {
       content: '';
@@ -102,19 +128,6 @@
       z-index: 3;
     }
     .acard:hover::after { left: 135%; }
-
-    /* Wiggle — triggered by IntersectionObserver on scroll-in, and on hover */
-    @keyframes card-wiggle {
-      0%   { transform: rotate(0deg); }
-      12%  { transform: rotate(-3deg) scale(1.02); }
-      28%  { transform: rotate(3deg) scale(1.02); }
-      44%  { transform: rotate(-2deg); }
-      60%  { transform: rotate(2deg); }
-      76%  { transform: rotate(-1deg); }
-      100% { transform: rotate(0deg); }
-    }
-    .acard.wiggle { animation: card-wiggle .65s cubic-bezier(.36,.07,.19,.97) both; }
-    .acard.wiggle:hover { animation: card-wiggle .65s cubic-bezier(.36,.07,.19,.97) both; }
 
     /* ─── NAV — white background ──────────────────────────────── */
     nav {
@@ -1841,40 +1854,19 @@ document.addEventListener('DOMContentLoaded', function() {
   if (firstBtn) switchTab(firstBtn, 'morning');
 });
 
-// ── Apart cards: wiggle on scroll-in + hover re-trigger ────
+// ── Apart cards: fan out from center on scroll ─────────────
 (function() {
-  var cards = document.querySelectorAll('.acard');
-  if (!cards.length) return;
-
-  // Stagger wiggle when section scrolls into view
+  var grid = document.querySelector('.apart-grid');
+  if (!grid) return;
   var observer = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       if (entry.isIntersecting) {
-        var grid = entry.target;
-        var items = grid.querySelectorAll('.acard');
-        items.forEach(function(card, i) {
-          setTimeout(function() {
-            card.classList.remove('wiggle');
-            void card.offsetWidth; // reflow
-            card.classList.add('wiggle');
-          }, i * 120);
-        });
+        grid.classList.add('cards-in');
         observer.unobserve(grid);
       }
     });
-  }, { threshold: 0.25 });
-
-  var grid = document.querySelector('.apart-grid');
-  if (grid) observer.observe(grid);
-
-  // Re-wiggle on hover
-  cards.forEach(function(card) {
-    card.addEventListener('mouseenter', function() {
-      card.classList.remove('wiggle');
-      void card.offsetWidth;
-      card.classList.add('wiggle');
-    });
-  });
+  }, { threshold: 0.2 });
+  observer.observe(grid);
 })();
 
 // ── Schedule accordion ─────────────────────────────────────
