@@ -259,6 +259,32 @@
       border: 1px solid var(--border);
     }
 
+    /* ─── HERO RIGHT COLUMN ───────────────────────────────────── */
+    .hero-right-col {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    /* ─── HERO PHOTO MOSAIC ───────────────────────────────────── */
+    .hero-photo-mosaic {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 130px 100px;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .hero-photo-mosaic img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 14px;
+      display: block;
+    }
+    .hpm-wide {
+      grid-column: 1 / -1;
+    }
+
     /* ─── FORM CARD ───────────────────────────────────────────── */
     #apply-form {
       position: relative;
@@ -1066,6 +1092,7 @@
     @media (max-width: 1000px) {
       .hero-grid { grid-template-columns: 1fr; }
       .form-card { max-width: 480px; }
+      .hero-photo-mosaic { max-width: 480px; }
       .hero-deco-tyiir, .hero-deco-group { display: none; }
       .apart-grid { grid-template-columns: 1fr; }
       .day-grid { grid-template-columns: 1fr; }
@@ -1150,11 +1177,20 @@
           <span class="htag">✓ AI-Driven</span>
           <span class="htag">✓ 2 Clubs per Session</span>
           <span class="htag">✓ No Homework</span>
+          <span class="htag">✓ Cognia Accredited</span>
+          <span class="htag">✓ Arizona ESA Approved</span>
         </div>
       </div>
 
-      <div id="apply-form">
-        <div class="form-card">
+      <div class="hero-right-col">
+        <div class="hero-photo-mosaic">
+          <img src="./images/image-79.png" alt="Novatio students in a virtual classroom" />
+          <img src="./images/image-80.png" alt="Student working on a project" />
+          <img src="./images/image-81.png" alt="Novatio afternoon club activity" class="hpm-wide" />
+        </div>
+
+        <div id="apply-form">
+          <div class="form-card">
           <div class="form-badge">🔥 Limited Spots for 2025–26</div>
           <h3>Start Your Application</h3>
           <p class="fsub">Takes less than 2 minutes. No commitment required.</p>
@@ -1188,9 +1224,10 @@
           </form>
           <p class="form-trust">🔒 Secure · No commitment required</p>
         </div>
-      </div>
-    </div>
-  </div>
+        </div><!-- /apply-form -->
+      </div><!-- /hero-right-col -->
+    </div><!-- /hero-grid -->
+  </div><!-- /container -->
 </section>
 
 <!-- STAT STRIP -->
