@@ -464,8 +464,8 @@
               <select name="grade_eligibility" required>
                 <option value="" disabled selected>Select one</option>
                 <option value="eligible">At least one of my children is currently in Grade 4 to Grade 8</option>
-                <option value="ineligible_under">All of my children are in Grade 3 or under, but I'd like to learn more</option>
-                <option value="ineligible_over">All of my children are in Grade 9 or above, but I'd like to learn more</option>
+                <option value="younger">All of my children are in Grade 3 or under, but I'd like to learn more</option>
+                <option value="older">All of my children are in Grade 9 or above, but I'd like to learn more</option>
               </select>
             </div>
             <div class="fg"><label>Zip Code *</label><input type="text" name="zip" placeholder="85001" maxlength="5" required /></div>
@@ -1076,7 +1076,8 @@ async function handleSubmit(e) {
     { name: 'phone',             value: data.phone             },
     { name: 'grade_eligibility', value: data.grade_eligibility },
     { name: 'zip',               value: data.zip               },
-    { name: 'state_code',        value: 'arizona'              },
+    { name: 'state',              value: 'Arizona'              },
+    { name: 'state_form',         value: 'Arizona'              },
   ];
   ['utm_source','utm_medium','utm_campaign','utm_term','utm_content'].forEach(k => {
     const v = localStorage.getItem('wf_' + k);
