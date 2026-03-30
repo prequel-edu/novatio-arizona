@@ -1191,7 +1191,7 @@
 
         <div id="apply-form">
           <div class="form-card">
-          <div class="form-badge">🔥 Limited Spots for 2025–26</div>
+          <div class="form-badge">🔥 Limited Spots for 2026–27</div>
           <h3>Start Your Application</h3>
           <p class="fsub">Takes less than 2 minutes. No commitment required.</p>
           <form onsubmit="handleSubmit(event)">
@@ -1201,20 +1201,16 @@
             </div>
             <div class="fg"><label>Email *</label><input type="email" name="email" placeholder="sarah@example.com" required /></div>
             <div class="fg"><label>Phone *</label><input type="tel" name="phone" placeholder="(555) 000-0000" required /></div>
-            <div class="frow">
-              <div class="fg">
-                <label>Student's Grade *</label>
-                <select name="grade" required>
-                  <option value="" disabled selected>Select grade</option>
-                  <option value="4th Grade">4th Grade</option>
-                  <option value="5th Grade">5th Grade</option>
-                  <option value="6th Grade">6th Grade</option>
-                  <option value="7th Grade">7th Grade</option>
-                  <option value="8th Grade">8th Grade</option>
-                </select>
-              </div>
-              <div class="fg"><label>Zip Code *</label><input type="text" name="zip" placeholder="85001" maxlength="5" required /></div>
+            <div class="fg">
+              <label>Student's Grade *</label>
+              <select name="grade_eligibility" required>
+                <option value="" disabled selected>Select one</option>
+                <option value="eligible">At least one of my children is currently in Grade 4 to Grade 8</option>
+                <option value="ineligible_under">All of my children are in Grade 3 or under, but I'd like to learn more</option>
+                <option value="ineligible_over">All of my children are in Grade 9 or above, but I'd like to learn more</option>
+              </select>
             </div>
+            <div class="fg"><label>Zip Code *</label><input type="text" name="zip" placeholder="85001" maxlength="5" required /></div>
             <p class="consent">By submitting, you agree to receive texts and calls from Novatio about your application. Reply STOP to opt out. <a href="https://novatio.school/privacy-policy">Privacy Policy</a>.</p>
             <div class="form-quote-block">
               "The fact that it's an AI virtual school is why I'm onboard. If you don't have these skills right now, you might not be able to enter the workforce with an edge."
@@ -1923,14 +1919,16 @@ async function handleSubmit(e) {
   btn.textContent = 'Submitting…'; btn.disabled = true;
 
   const data   = Object.fromEntries(new FormData(form));
+  const isEligible = data.grade_eligibility === 'eligible';
+
   const fields = [
-    { name: 'firstname',         value: data.first_name },
-    { name: 'lastname',          value: data.last_name  },
-    { name: 'email',             value: data.email      },
-    { name: 'phone',             value: data.phone      },
-    { name: 'grade_eligibility', value: data.grade      },
-    { name: 'zip',               value: data.zip        },
-    { name: 'state_code',        value: 'AZ'            },
+    { name: 'firstname',         value: data.first_name        },
+    { name: 'lastname',          value: data.last_name         },
+    { name: 'email',             value: data.email             },
+    { name: 'phone',             value: data.phone             },
+    { name: 'grade_eligibility', value: data.grade_eligibility },
+    { name: 'zip',               value: data.zip               },
+    { name: 'state_code',        value: 'arizona'              },
   ];
   ['utm_source','utm_medium','utm_campaign','utm_term','utm_content'].forEach(k => {
     const v = localStorage.getItem('wf_' + k);
@@ -1945,12 +1943,19 @@ async function handleSubmit(e) {
     );
   } catch(err) { console.error('HubSpot error:', err); }
 
-  form.innerHTML = `
-    <div style="text-align:center;padding:32px 0;">
-      <div style="font-size:48px;margin-bottom:16px;">✅</div>
-      <h3 style="font-size:20px;font-weight:800;margin-bottom:10px;color:#222625;">You're on your way!</h3>
-      <p style="color:#6B7280;font-size:14px;line-height:1.7;">A Novatio admissions counselor will reach out within one business day to confirm your ESA eligibility and walk you through next steps.</p>
-    </div>`;
+  // Redirect routing (mimics novatio.school)
+  const baseUrl = isEligible
+    ? 'https://novatio.school/thank-you-eligible'
+    : 'https://novatio.school/thank-you-ineligible';
+
+  const qp = new URLSearchParams();
+  qp.append('state_code', 'arizona');
+  qp.append('grade_eligibility', isEligible ? 'eligible' : 'ineligible');
+  ['utm_source','utm_medium','utm_campaign','utm_term','utm_content'].forEach(k => {
+    const v = localStorage.getItem('wf_' + k);
+    if (v) qp.append(k, v);
+  });
+  window.location.href = baseUrl + '?' + qp.toString();
 }
 
 // ── Video Tabs ─────────────────────────────────────────────────
