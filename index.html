@@ -1060,6 +1060,10 @@ document.addEventListener('DOMContentLoaded', function() {
 const HS_PORTAL = '49158869';
 const HS_FORM   = '0ddc060e-31d4-46b6-85cd-25a692653447';
 
+// Supabase backup
+const SUPA_URL  = 'https://muiutupxkfifrfbzyaom.supabase.co/rest/v1/form_submissions';
+const SUPA_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im11aXV0dXB4a2ZpZnJmYnp5YW9tIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ5NjQ4OTksImV4cCI6MjA5MDU0MDg5OX0.BIfJ4pEfdTaeYSc_b0pKD_zGpZFXVh2wYnjdlpXOTOc';
+
 async function handleSubmit(e) {
   e.preventDefault();
   const form = e.target;
@@ -1079,18 +1083,29 @@ async function handleSubmit(e) {
     { name: 'state',              value: 'Arizona'              },
     { name: 'state_form',         value: 'Arizona'              },
   ];
+  const utms = {};
   ['utm_source','utm_medium','utm_campaign','utm_term','utm_content'].forEach(k => {
     const v = localStorage.getItem('wf_' + k);
-    if (v) fields.push({ name: k, value: v });
+    if (v) { fields.push({ name: k, value: v }); utms[k] = v; }
   });
 
-  try {
-    await fetch(
-      `https://api.hsforms.com/submissions/v3/integration/submit/${HS_PORTAL}/${HS_FORM}`,
-      { method: 'POST', headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({ fields, context: { pageUri: location.href, pageName: document.title } }) }
-    );
-  } catch(err) { console.error('HubSpot error:', err); }
+  const hsPromise = fetch(
+    `https://api.hsforms.com/submissions/v3/integration/submit/${HS_PORTAL}/${HS_FORM}`,
+    { method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ fields, context: { pageUri: location.href, pageName: document.title } }) }
+  ).catch(err => console.error('HubSpot error:', err));
+
+  const supaPromise = fetch(SUPA_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'apikey': SUPA_KEY, 'Authorization': 'Bearer ' + SUPA_KEY },
+    body: JSON.stringify({
+      email: data.email, firstname: data.first_name, lastname: data.last_name,
+      phone: data.phone, grade_eligibility: data.grade_eligibility,
+      zip: data.zip, state: 'Arizona', source: 'arizona-lp', ...utms
+    })
+  }).catch(err => console.error('Supabase error:', err));
+
+  await Promise.all([hsPromise, supaPromise]);
 
   // Redirect routing (mimics novatio.school)
   const baseUrl = isEligible
