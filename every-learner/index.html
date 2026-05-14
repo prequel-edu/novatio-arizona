@@ -1114,7 +1114,7 @@ const HS_FORM   = 'd515c6b1-4cc8-4a8a-bfd4-ce7737978804';
 const LP_VARIANT = 'every_learner';
 
 // Supabase backup
-const SUPA_URL  = 'https://bexglkoyitkbymvyrobl.supabase.co/rest/v1/form_submissions';
+const SUPA_URL  = 'https://bexglkoyitkbymvyrobl.supabase.co/rest/v1/AZ_leadform_submissions_backup';
 const SUPA_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJleGdsa295aXRrYnltdnlyb2JsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc5NzA2MTIsImV4cCI6MjA4MzU0NjYxMn0.X7GifZfzzMFuxGj9dTnj_QJucBnw2xNIBp41_9SoH4g';
 
 async function handleSubmit(e) {
@@ -1170,7 +1170,8 @@ async function handleSubmit(e) {
     body: JSON.stringify({
       email: data.email, firstname: data.first_name, lastname: data.last_name,
       phone: data.phone, grade_eligibility: data.grade_eligibility,
-      zip: data.zip, state: 'Arizona', source: 'arizona-lp', ...utms
+      zip: data.zip, state: 'Arizona', source: 'arizona-lp',
+      lp_variant: LP_VARIANT, ...utms
     })
   }).catch(err => console.error('Supabase error:', err));
 

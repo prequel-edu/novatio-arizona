@@ -340,10 +340,14 @@ function buildVariant(html, v) {
     `<link rel="canonical" href="${v.canonical}" />\n  <meta name="robots" content="noindex, nofollow" />`
   );
 
-  // 4. HS_FORM constant + add LP_VARIANT const
+  // 4. HS_FORM constant + override chassis LP_VARIANT const
   html = html.replace(
     /const HS_FORM\s+=\s+'[^']+';/,
-    `const HS_FORM   = '${v.formGuid}';\nconst LP_VARIANT = '${v.lpVariant}';`
+    `const HS_FORM   = '${v.formGuid}';`
+  );
+  html = html.replace(
+    /const LP_VARIANT = null;[^\n]*/,
+    `const LP_VARIANT = '${v.lpVariant}';`
   );
 
   // 5. Add lp_variant to fields array in handleSubmit
