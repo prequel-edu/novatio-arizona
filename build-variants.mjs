@@ -412,8 +412,9 @@ function buildVariant(html, v) {
     `<div class="faq-list">\n${v.faqVariantHtml}`
   );
 
-  // 16. Default schedule profile — swap which sched-tab has .active class + which profile div has display:none
-  // Default in chassis is 'aiden'. If variant default is different, swap.
+  // 16. Default schedule profile — swap which sched-tab has .active class + which profile is shown.
+  // Chassis has both (a) static HTML state defaulting to aiden visible AND (b) a DOMContentLoaded
+  // JS handler that forces profile-aiden to display='flex' on page load. We must update BOTH.
   if (v.defaultScheduleProfile !== 'aiden') {
     // Remove active from aiden tab
     html = html.replace(
@@ -425,15 +426,20 @@ function buildVariant(html, v) {
       new RegExp(`(<button class="sched-tab)(" onclick="switchProfile\\('${v.defaultScheduleProfile}')`),
       '$1 active$2'
     );
-    // Hide aiden profile by default
+    // Hide aiden profile by default (static HTML)
     html = html.replace(
       /(<div class="sched-accordion" id="profile-aiden" style="margin:0 auto;)(">)/,
       '$1display:none;$2'
     );
-    // Show new default profile (remove display:none)
+    // Show new default profile (remove display:none from static HTML)
     html = html.replace(
       new RegExp(`(<div class="sched-accordion" id="profile-${v.defaultScheduleProfile}" style="margin:0 auto;)display:none;(">)`),
       '$1$2'
+    );
+    // Swap the DOMContentLoaded init to show variant default instead of aiden
+    html = html.replace(
+      /var aiden = document\.getElementById\('profile-aiden'\);\s*if \(aiden\) aiden\.style\.display='flex';/,
+      `var def = document.getElementById('profile-${v.defaultScheduleProfile}'); if (def) def.style.display='flex';`
     );
   }
 
