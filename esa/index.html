@@ -190,8 +190,14 @@
     .day-tab.active .day-tab-desc { display: block; }
     .day-tab-bar { height: 3px; background: var(--tc, var(--orange)); border-radius: 2px; margin-top: 12px; width: 0; }
     .day-video-col { }
-    .day-video-box { border-radius: 16px; overflow: hidden; background: var(--warm); aspect-ratio: 16/10; border: 3px solid transparent; transition: border-color .3s; }
+    .day-video-box { position: relative; border-radius: 16px; overflow: hidden; background: var(--warm); aspect-ratio: 16/10; border: 3px solid transparent; transition: border-color .3s; }
     .day-video-box video, .day-video-box img { width: 100%; height: 100%; object-fit: cover; }
+    .day-video-unmute { position: absolute; bottom: 12px; right: 12px; width: 40px; height: 40px; border-radius: 50%; background: rgba(0,0,0,.55); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #fff; z-index: 2; transition: background .2s, transform .15s; padding: 0; }
+    .day-video-unmute:hover { background: rgba(0,0,0,.78); transform: scale(1.06); }
+    .day-video-unmute svg { width: 20px; height: 20px; fill: currentColor; pointer-events: none; }
+    .day-video-unmute .icon-unmuted { display: none; }
+    .day-video-unmute.is-on .icon-muted { display: none; }
+    .day-video-unmute.is-on .icon-unmuted { display: block; }
 
     /* ─── ② SCHEDULE PROFILES ────────────────────────────────────── */
     .schedule-tabs { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
@@ -674,6 +680,10 @@
         <div class="day-video-box" id="day-video-box">
           <video id="day-video" muted playsinline autoplay loop style="display:none;"></video>
           <img id="day-img" src="/images/image-78.png" alt="" />
+          <button type="button" id="day-video-unmute" class="day-video-unmute" aria-label="Unmute video" aria-pressed="false" onclick="toggleDayVideoAudio()">
+            <svg class="icon-muted" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.59 3L14 9.41 15.41 8l2.59 2.59L20.59 8 22 9.41 19.41 12 22 14.59 20.59 16 18 13.41 15.41 16 14 14.59 16.59 12z"/></svg>
+            <svg class="icon-unmuted" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77S18.01 4.14 14 3.23z"/></svg>
+          </button>
         </div>
       </div>
     </div>
@@ -1248,8 +1258,13 @@ function switchTab(btn, id) {
   img.src = t.img; img.style.display = 'block';
   vid.style.display = 'none'; vid.pause();
   vid.src = t.src; vid.load();
+  vid.muted = !window.__dayVideoAudioOn;
   vid.oncanplay = function() {
-    vid.play().catch(()=>{});
+    vid.muted = !window.__dayVideoAudioOn;
+    vid.play().catch(function(){
+      // If unmuted autoplay was blocked, fall back to muted so the tab still plays.
+      if (!vid.muted) { vid.muted = true; vid.play().catch(()=>{}); }
+    });
     vid.style.display = 'block'; img.style.display = 'none';
     const bar = document.getElementById('bar-'+id);
     if (bar && vid.duration) {
@@ -1257,6 +1272,22 @@ function switchTab(btn, id) {
     }
   };
   vid.onerror = function() { vid.style.display='none'; img.style.display='block'; };
+}
+
+window.__dayVideoAudioOn = false;
+function toggleDayVideoAudio() {
+  window.__dayVideoAudioOn = !window.__dayVideoAudioOn;
+  const vid = document.getElementById('day-video');
+  const btn = document.getElementById('day-video-unmute');
+  if (vid) {
+    vid.muted = !window.__dayVideoAudioOn;
+    if (!vid.muted) { vid.play().catch(()=>{}); }
+  }
+  if (btn) {
+    btn.classList.toggle('is-on', window.__dayVideoAudioOn);
+    btn.setAttribute('aria-pressed', String(window.__dayVideoAudioOn));
+    btn.setAttribute('aria-label', window.__dayVideoAudioOn ? 'Mute video' : 'Unmute video');
+  }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
