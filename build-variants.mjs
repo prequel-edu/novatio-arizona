@@ -35,7 +35,7 @@ const variants = {
     hero: {
       eyebrow: '🌵 Arizona ESA · Grades 4–8 · For Homeschool Families',
       h1Html: '<u>Homeschool</u>, with real support.',
-      subhead: `You love the flexibility. Your child loves learning at their own pace. Novatio adds Arizona-certified teachers, daily live class time, and a community of homeschool families without taking over your day. <strong>Funded by Arizona's ESA at no cost to your family.</strong>`,
+      subhead: `You love the flexibility. Your child loves learning at their own pace. Novatio adds daily live instruction from real teachers and a community of homeschool families without taking over your day. <strong>Funded by Arizona's ESA at no cost to your family.</strong>`,
       primaryCta: 'See if Novatio fits your family →',
       secondaryCta: null,
     },
@@ -88,7 +88,7 @@ const variants = {
         <ul style="list-style:none;padding:0;margin:0;">
           <li style="padding:10px 0;border-bottom:1px solid rgba(0,0,0,.06);font-size:15px;color:var(--dark);line-height:1.6;">An AI tutor that calibrates that pace every subject, every day</li>
           <li style="padding:10px 0;border-bottom:1px solid rgba(0,0,0,.06);font-size:15px;color:var(--dark);line-height:1.6;">A live afternoon workshop where students build real-world skills</li>
-          <li style="padding:10px 0;border-bottom:1px solid rgba(0,0,0,.06);font-size:15px;color:var(--dark);line-height:1.6;">Daily live instruction from Arizona-certified teachers so you're not the lesson planner</li>
+          <li style="padding:10px 0;border-bottom:1px solid rgba(0,0,0,.06);font-size:15px;color:var(--dark);line-height:1.6;">Daily live instruction from real teachers so you're not the lesson planner</li>
           <li style="padding:10px 0;border-bottom:1px solid rgba(0,0,0,.06);font-size:15px;color:var(--dark);line-height:1.6;">A 2-hour academic block that fits any schedule</li>
           <li style="padding:10px 0;font-size:15px;color:var(--dark);line-height:1.6;">A community of other Arizona homeschool families</li>
         </ul>
@@ -102,7 +102,7 @@ const variants = {
     faqVariantHtml: `
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">Will the day be too structured for our family?<span class="faq-chevron">&#8964;</span></div>
-        <div class="faq-a">Two hours of academics each morning, live with an Arizona-certified teacher, then afternoon clubs run until 2 PM. After that, the day is yours. No homework, ever. Most homeschool-to-Novatio families keep their existing afternoon routines fully intact. Travel and appointments work fine.</div>
+        <div class="faq-a">Two hours of academics each morning, live with a Novatio teacher, then afternoon clubs run until 2 PM. After that, the day is yours. No homework, ever. Most homeschool-to-Novatio families keep their existing afternoon routines fully intact. Travel and appointments work fine.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">How much of my day will I get back?<span class="faq-chevron">&#8964;</span></div>
@@ -130,7 +130,7 @@ const variants = {
     hero: {
       eyebrow: '🌵 Arizona ESA · Grades 4–8 · Built for How Your Child Learns',
       h1Html: 'Finally, a school that <u>works the way your child does.</u>',
-      subhead: `At Novatio, every student moves at their own pace, every subject, every day. The AI calibrates. Live teachers stay on screen. Built-in breaks and individualized learning plans aren't add-ons. They're how the school runs. <strong>Arizona ESA covers tuition.</strong>`,
+      subhead: `At Novatio, every student moves at their own pace, every subject, every day. The work meets your child right where they are. Live teachers stay on screen. Built-in breaks and individualized learning plans aren't add-ons. They're how the school runs. <strong>Arizona ESA covers tuition.</strong>`,
       primaryCta: 'Learn how Novatio works →',
       secondaryCta: null,
     },
@@ -147,11 +147,10 @@ const variants = {
     <div style="text-align:center;max-width:780px;margin:0 auto 36px;">
       <div class="section-label">A Different Kind Of School Day</div>
       <h2 class="section-h2" style="margin-bottom:12px;">Novatio runs differently. That's the point.</h2>
-      <p style="font-size:16px;color:var(--muted);line-height:1.75;">We didn't bolt accommodations onto a traditional model. We started over. The day runs in shorter, focused blocks. Built-in breaks aren't a reward, they're scheduled. Live teachers stay on screen so your child has a face to come back to. The AI calibrates the work to where your child actually is.</p>
+      <p style="font-size:16px;color:var(--muted);line-height:1.75;">We didn't bolt accommodations onto a traditional model. We started over. The day runs in shorter, focused blocks. Built-in breaks aren't a reward, they're scheduled. Live teachers stay on screen so your child has a face to come back to. The work adjusts to where your child actually is.</p>
     </div>
     <div style="background:#fff;border-radius:18px;padding:32px;box-shadow:0 4px 24px rgba(0,0,0,.08);max-width:780px;margin:0 auto;">
-      <p style="font-size:15px;color:var(--dark);line-height:1.75;margin-bottom:16px;"><strong>A student can be at one level in reading and another in math, and the platform adjusts overnight.</strong> No catching up. No falling behind. Just steady forward motion. Built-in breaks. Live teacher contact every day. Text-to-speech available across the platform. See Jay's schedule below for what this looks like in practice.</p>
-      <p style="font-size:14px;color:var(--muted);text-align:center;margin-top:18px;">↓ Scroll to "What does your student's day actually look like?" to see Jay's daily schedule.</p>
+      <p style="font-size:15px;color:var(--dark);line-height:1.75;margin-bottom:16px;"><strong>A student can be at one level in reading and another in math, and the platform adjusts overnight.</strong> No catching up. No falling behind. Just steady forward motion. Built-in breaks. Live teacher contact every day. Text-to-speech available across the platform.</p>
     </div>
   </div>
 </section>
@@ -163,17 +162,25 @@ const variants = {
     <div style="max-width:840px;margin:0 auto;background:var(--cream);border:2px solid #FDDAB6;border-radius:20px;padding:40px 36px;">
       <div class="section-label" style="text-align:center;">For Every Learner</div>
       <h2 class="section-h2" style="text-align:center;margin-bottom:20px;">Built for students with IEPs, 504 plans, and a wide range of learning profiles.</h2>
-      <p style="font-size:16px;color:var(--dark);line-height:1.85;margin-bottom:18px;">Novatio is built for students with IEPs, 504 plans, and a wide range of learning profiles, including students with dyslexia and those who've needed more support than a traditional classroom could offer.</p>
-      <p style="font-size:16px;color:var(--dark);line-height:1.85;margin-bottom:8px;">Here's what that looks like in practice:</p>
-      <ul style="list-style:none;padding:0;margin:0 0 18px;">
-        <li style="padding:6px 0 6px 24px;position:relative;font-size:15px;color:var(--dark);line-height:1.7;"><span style="position:absolute;left:0;color:var(--orange);font-weight:800;">✓</span>Individualized learning plans tailored to each student</li>
+      <p style="font-size:16px;color:var(--dark);line-height:1.85;margin-bottom:22px;">Novatio is built for students with IEPs, 504 plans, and a wide range of learning profiles, including students with dyslexia and those who've needed more support than a traditional classroom could offer.</p>
+      <p style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--orange);margin-bottom:10px;">Every Novatio student gets</p>
+      <ul style="list-style:none;padding:0;margin:0 0 24px;">
+        <li style="padding:6px 0 6px 24px;position:relative;font-size:15px;color:var(--dark);line-height:1.7;"><span style="position:absolute;left:0;color:var(--orange);font-weight:800;">✓</span>An individualized pace in every subject, every day</li>
         <li style="padding:6px 0 6px 24px;position:relative;font-size:15px;color:var(--dark);line-height:1.7;"><span style="position:absolute;left:0;color:var(--orange);font-weight:800;">✓</span>Extended time for assessments and frequent breaks</li>
-        <li style="padding:6px 0 6px 24px;position:relative;font-size:15px;color:var(--dark);line-height:1.7;"><span style="position:absolute;left:0;color:var(--orange);font-weight:800;">✓</span>Academic coaching and reading interventionist support</li>
         <li style="padding:6px 0 6px 24px;position:relative;font-size:15px;color:var(--dark);line-height:1.7;"><span style="position:absolute;left:0;color:var(--orange);font-weight:800;">✓</span>Text-to-speech and voice-to-text built into the platform</li>
         <li style="padding:6px 0 6px 24px;position:relative;font-size:15px;color:var(--dark);line-height:1.7;"><span style="position:absolute;left:0;color:var(--orange);font-weight:800;">✓</span>Live teachers on-screen throughout the school day</li>
       </ul>
-      <p style="font-size:16px;color:var(--dark);line-height:1.85;margin-bottom:24px;">If your child has an active IEP in Arizona, additional special education services are fully covered by Arizona's IEP program, separate from ESA. This includes things like tutoring and specialist support at no additional cost to your family.</p>
-      <div style="background:#fff;border-radius:14px;padding:24px;border-left:4px solid var(--orange);margin-top:8px;">
+      <p style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--orange);margin-bottom:10px;">For students who need more support</p>
+      <p style="font-size:15px;color:var(--dark);line-height:1.8;margin-bottom:10px;">Our <strong>Special Education Support Program</strong> adds coordinated services on top of the school day:</p>
+      <ul style="list-style:none;padding:0;margin:0 0 18px;">
+        <li style="padding:6px 0 6px 24px;position:relative;font-size:15px;color:var(--dark);line-height:1.7;"><span style="position:absolute;left:0;color:var(--orange);font-weight:800;">✓</span>IEP and 504 coordination with your local school district, including annual reviews</li>
+        <li style="padding:6px 0 6px 24px;position:relative;font-size:15px;color:var(--dark);line-height:1.7;"><span style="position:absolute;left:0;color:var(--orange);font-weight:800;">✓</span>Targeted reading intervention and small-group executive-functioning support</li>
+        <li style="padding:6px 0 6px 24px;position:relative;font-size:15px;color:var(--dark);line-height:1.7;"><span style="position:absolute;left:0;color:var(--orange);font-weight:800;">✓</span>Organizational coaching: planning, time management, study skills, and self-advocacy</li>
+        <li style="padding:6px 0 6px 24px;position:relative;font-size:15px;color:var(--dark);line-height:1.7;"><span style="position:absolute;left:0;color:var(--orange);font-weight:800;">✓</span>Quarterly progress reports, parent meetings, and extra 1:1 teacher check-ins</li>
+      </ul>
+      <p style="font-size:15px;color:var(--dark);line-height:1.8;margin-bottom:18px;">Students who need intensive, one-on-one dyslexia support can enroll in our <strong>One-on-One Dyslexia Intervention Program</strong>, taught by master's-level reading and dyslexia specialists.</p>
+      <p style="font-size:14px;color:var(--muted);line-height:1.75;margin-bottom:18px;">Clinical and therapeutic services like speech therapy, occupational therapy, and counseling are handled by outside providers. Our admissions team will walk you through which supports fit your child and what they cost.</p>
+      <div style="background:#fff;border-radius:14px;padding:24px;border-left:4px solid var(--orange);margin-top:24px;">
         <p style="font-size:15px;font-style:italic;color:var(--dark);line-height:1.7;margin-bottom:12px;">"Novatio has been a great success for my autistic 5th grader. She entered in October at 3rd-4th grade academic levels and is now finishing most subjects at 4th-5th grade levels. For our IEP family, additional reading support and general instructional assistance is present."</p>
         <p style="font-size:13px;font-weight:700;color:var(--muted);">- Arizona parent of an autistic 5th grader (via Niche)</p>
       </div>
@@ -185,11 +192,11 @@ const variants = {
     faqVariantHtml: `
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">Does Novatio replace my child's existing IEP services?<span class="faq-chevron">&#8964;</span></div>
-        <div class="faq-a">No. If your child has an active IEP in Arizona, additional special education services like tutoring and specialist support are fully covered by Arizona's IEP program, separate from ESA. Those services continue. Novatio is the school, not the service provider.</div>
+        <div class="faq-a">No. Every Novatio student gets accommodations like extended time, frequent breaks, text-to-speech, and live teacher support. For students who need more, our Special Education Support Program adds IEP and 504 coordination with your district, reading intervention, executive-functioning coaching, and extra 1:1 check-ins. Clinical services like speech therapy, occupational therapy, and counseling come from outside providers and continue alongside Novatio. Admissions will walk you through what fits your child and what it costs.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">My child has dyslexia. How does Novatio handle reading?<span class="faq-chevron">&#8964;</span></div>
-        <div class="faq-a">The AI calibrates reading work to where your child actually is. Live teachers stay on screen so your child has a face to come back to. Many of our students with dyslexia tell us this is the first program where they don't feel singled out.</div>
+        <div class="faq-a">For everyday reading, the work adjusts to where your child actually is, so the material is never too hard or too easy, and live teachers stay on screen. For students who need more, our One-on-One Dyslexia Intervention Program provides intensive, evidence-based support from master's-level reading and dyslexia specialists, covering phonological awareness, decoding, fluency, comprehension, and written language. Many of our students with dyslexia tell us this is the first program where they don't feel singled out.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">Do I need to share my child's IEP or evaluation before applying?<span class="faq-chevron">&#8964;</span></div>
@@ -207,13 +214,13 @@ const variants = {
   esa: {
     formGuid: '0ddc060e-31d4-46b6-85cd-25a692653447',
     lpVariant: 'esa',
-    title: 'Novatio Arizona | ESA Covers Tuition + Money Left Over | Grades 4-8',
-    metaDesc: `Arizona ESA covers Novatio's tuition in full. Remaining balance is yours for tutoring, therapies, curriculum. State-funded private virtual school for grades 4–8.`,
+    title: 'Novatio Arizona | ESA-Funded, Every Family Qualifies | Grades 4-8',
+    metaDesc: `Arizona's ESA scholarship pays Novatio's tuition directly. Every Arizona family qualifies, no out-of-pocket tuition. State-funded private virtual school for grades 4–8.`,
     canonical: 'https://arizona.novatio.school/esa/',
     hero: {
       eyebrow: '🌵 Arizona ESA · Grades 4–8 · State-Funded Private School',
-      h1Html: 'ESA covers tuition. <u>The rest is yours.</u>',
-      subhead: `Every Arizona family receives a $10,000 ESA voucher. Novatio's tuition is $7,500, fully covered. You keep the remaining <strong>$2,500</strong> for tutoring, therapies, curriculum, or other approved expenses. State-issued voucher, not a reimbursement. <strong>You never write a check.</strong>`,
+      h1Html: `Arizona's ESA covers <u>your child's tuition.</u>`,
+      subhead: `Arizona's ESA is a scholarship account, not a voucher and not a reimbursement. Every Arizona family qualifies, and the state deposits funds you control. Novatio's tuition is <strong>$7,500</strong>, paid directly from your ESA account. <strong>You never write a check.</strong>`,
       primaryCta: 'See what ESA covers for your family →',
       secondaryCta: null,
     },
@@ -226,7 +233,7 @@ const variants = {
     <div style="text-align:center;max-width:780px;margin:0 auto 40px;">
       <div class="section-label">By The Numbers</div>
       <h2 class="section-h2" style="margin-bottom:12px;">The numbers Arizona families are seeing.</h2>
-      <p style="font-size:16px;color:var(--muted);line-height:1.75;">Arizona's ESA isn't a discount or a reimbursement. It's a state-issued account the Arizona Department of Education deposits on your behalf. Every Arizona K–12 family receives an ESA voucher. Novatio's tuition is covered in full and the remainder stays in your account for tutoring, therapies, and other approved educational expenses.</p>
+      <p style="font-size:16px;color:var(--muted);line-height:1.75;">Arizona's ESA isn't a discount or a reimbursement. It's a scholarship account the Arizona Department of Education funds and you control. Every Arizona K–12 family qualifies. Novatio's tuition is paid directly from your account, and any funds beyond tuition stay in your account for tutoring, therapies, and other approved educational expenses.</p>
     </div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:980px;margin:0 auto;">
       <div style="background:#fff;border-radius:18px;padding:32px 24px;text-align:center;box-shadow:0 4px 16px rgba(0,0,0,.06);">
@@ -240,9 +247,9 @@ const variants = {
         <p style="font-size:12px;color:var(--muted);line-height:1.5;">One Novatio student, one school year</p>
       </div>
       <div style="background:#fff;border-radius:18px;padding:32px 24px;text-align:center;box-shadow:0 4px 16px rgba(0,0,0,.06);">
-        <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:48px;font-weight:800;color:var(--orange);letter-spacing:-2px;line-height:1;margin-bottom:8px;">$2,500</div>
-        <p style="font-size:14px;color:var(--dark);font-weight:600;margin-bottom:4px;">Left over for your family</p>
-        <p style="font-size:12px;color:var(--muted);line-height:1.5;">After ESA covers Novatio tuition</p>
+        <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:48px;font-weight:800;color:var(--orange);letter-spacing:-2px;line-height:1;margin-bottom:8px;">$0</div>
+        <p style="font-size:14px;color:var(--dark);font-weight:600;margin-bottom:4px;">Out of pocket for tuition</p>
+        <p style="font-size:12px;color:var(--muted);line-height:1.5;">ESA pays Novatio directly</p>
       </div>
     </div>
   </div>
@@ -253,43 +260,28 @@ const variants = {
 <section class="section section-white" style="padding:72px 0;">
   <div class="container">
     <div style="text-align:center;max-width:780px;margin:0 auto 36px;">
-      <div class="section-label">Real Numbers</div>
-      <h2 class="section-h2" style="margin-bottom:12px;">Here's how ESA works in real numbers.</h2>
-      <p style="font-size:16px;color:var(--muted);line-height:1.75;">Most ESA-school ads focus on the $0 tuition. That's true at Novatio too. But it's not the whole picture. Your ESA award is yours. Once Novatio's tuition is paid, any remaining balance stays in your account for other approved educational expenses.</p>
+      <div class="section-label">How ESA Works</div>
+      <h2 class="section-h2" style="margin-bottom:12px;">Here's how Arizona's ESA actually works.</h2>
+      <p style="font-size:16px;color:var(--muted);line-height:1.75;">A lot of ESA ads make it sound complicated, or promise a specific dollar amount. The truth is simpler. Arizona's ESA is a scholarship account every family can use, your award depends on your own child, and Novatio's tuition is paid straight from that account.</p>
     </div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:980px;margin:0 auto;">
       <div style="background:var(--dark);color:#fff;border-radius:18px;padding:28px 24px;">
-        <p style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:12px;">Every AZ family</p>
-        <p style="font-size:13px;color:rgba(255,255,255,.85);line-height:1.6;margin-bottom:8px;">Annual ESA amount</p>
-        <p style="font-family:'Bricolage Grotesque',sans-serif;font-size:24px;font-weight:800;color:#fff;margin-bottom:14px;">$10,000</p>
-        <p style="font-size:13px;color:rgba(255,255,255,.85);line-height:1.6;margin-bottom:8px;">Novatio tuition</p>
-        <p style="font-family:'Bricolage Grotesque',sans-serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:14px;">– $7,500</p>
-        <hr style="border:0;border-top:1px solid rgba(255,255,255,.18);margin:14px 0;" />
-        <p style="font-size:13px;color:rgba(255,255,255,.85);line-height:1.6;margin-bottom:8px;">Yours for tutoring, curriculum, therapy</p>
-        <p style="font-family:'Bricolage Grotesque',sans-serif;font-size:28px;font-weight:800;color:var(--orange2);">$2,500</p>
+        <p style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:12px;">01</p>
+        <p style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;color:#fff;margin-bottom:12px;line-height:1.2;">Every family qualifies</p>
+        <p style="font-size:14px;color:rgba(255,255,255,.85);line-height:1.7;">Arizona's ESA is universal. Every K–12 family is eligible to open a scholarship account, regardless of income or zip code.</p>
       </div>
       <div style="background:var(--dark);color:#fff;border-radius:18px;padding:28px 24px;border:2px solid var(--orange);">
-        <p style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:12px;">IEP-eligible ESA</p>
-        <p style="font-size:13px;color:rgba(255,255,255,.85);line-height:1.6;margin-bottom:8px;">Annual ESA amount</p>
-        <p style="font-family:'Bricolage Grotesque',sans-serif;font-size:24px;font-weight:800;color:#fff;margin-bottom:14px;">$15,000–$25,000</p>
-        <p style="font-size:13px;color:rgba(255,255,255,.85);line-height:1.6;margin-bottom:8px;">Novatio tuition</p>
-        <p style="font-family:'Bricolage Grotesque',sans-serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:14px;">– Tuition fully covered</p>
-        <hr style="border:0;border-top:1px solid rgba(255,255,255,.18);margin:14px 0;" />
-        <p style="font-size:13px;color:rgba(255,255,255,.85);line-height:1.6;margin-bottom:8px;">Yours for tutoring, therapies, specialist support</p>
-        <p style="font-family:'Bricolage Grotesque',sans-serif;font-size:28px;font-weight:800;color:var(--orange2);">$7,500–$17,500</p>
+        <p style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:12px;">02</p>
+        <p style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;color:#fff;margin-bottom:12px;line-height:1.2;">Tuition, paid directly</p>
+        <p style="font-size:14px;color:rgba(255,255,255,.85);line-height:1.7;">Novatio's <strong style="color:#fff;">$7,500</strong> tuition is paid straight from your ESA account through ClassWallet. You never write a check.</p>
       </div>
       <div style="background:var(--dark);color:#fff;border-radius:18px;padding:28px 24px;">
-        <p style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:12px;">Higher-award family</p>
-        <p style="font-size:13px;color:rgba(255,255,255,.85);line-height:1.6;margin-bottom:8px;">Annual ESA amount</p>
-        <p style="font-family:'Bricolage Grotesque',sans-serif;font-size:24px;font-weight:800;color:#fff;margin-bottom:14px;">Varies by qualifying conditions</p>
-        <p style="font-size:13px;color:rgba(255,255,255,.85);line-height:1.6;margin-bottom:8px;">Novatio tuition</p>
-        <p style="font-family:'Bricolage Grotesque',sans-serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:14px;">– Tuition fully covered</p>
-        <hr style="border:0;border-top:1px solid rgba(255,255,255,.18);margin:14px 0;" />
-        <p style="font-size:13px;color:rgba(255,255,255,.85);line-height:1.6;margin-bottom:8px;">Yours for other approved expenses</p>
-        <p style="font-family:'Bricolage Grotesque',sans-serif;font-size:28px;font-weight:800;color:var(--orange2);">$X,XXX</p>
+        <p style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:12px;">03</p>
+        <p style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;color:#fff;margin-bottom:12px;line-height:1.2;">Amounts vary by student</p>
+        <p style="font-size:14px;color:rgba(255,255,255,.85);line-height:1.7;">There's no single ESA amount. Your award depends on your child's grade and any qualifying needs. Funds beyond tuition stay in your account for approved expenses like tutoring, curriculum, and therapies.</p>
       </div>
     </div>
-    <p style="text-align:center;font-size:13px;color:var(--muted);margin-top:24px;max-width:780px;margin-left:auto;margin-right:auto;line-height:1.7;">Talk to our admissions team to estimate what your specific family's award covers.</p>
+    <p style="text-align:center;font-size:13px;color:var(--muted);margin-top:24px;max-width:780px;margin-left:auto;margin-right:auto;line-height:1.7;">Talk to our admissions team to understand what your specific family's award covers.</p>
   </div>
 </section>
 `,
@@ -300,8 +292,8 @@ const variants = {
         <div class="faq-a">You apply directly through the Arizona Department of Education's ClassWallet portal. Novatio walks you through every step. The Novatio application is separate from the ESA application, but we time them so you can do them in parallel.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">What can I use the remaining $2,500 ESA balance for?<span class="faq-chevron">&#8964;</span></div>
-        <div class="faq-a">Your remaining balance stays in your ClassWallet account. You can use it on a wide range of approved educational expenses: tutoring, therapies, curriculum, technology, and specialist support. ClassWallet has a marketplace of approved providers. The remainder doesn't go back to the state. It's yours.</div>
+        <div class="faq-q" onclick="toggleFaq(this)">What can I use my remaining ESA balance for?<span class="faq-chevron">&#8964;</span></div>
+        <div class="faq-a">Any funds in your account beyond Novatio's tuition stay in your ClassWallet account. You can use them on a wide range of approved educational expenses: tutoring, therapies, curriculum, technology, and specialist support. ClassWallet has a marketplace of approved providers. The balance doesn't go back to the state. It's yours.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">What if my child is currently in a public school?<span class="faq-chevron">&#8964;</span></div>
@@ -310,7 +302,7 @@ const variants = {
 `,
     finalCta: {
       h2: 'Arizona families: see what your ESA covers at Novatio.',
-      sub: 'Tuition fully paid. Money left over. State-funded, parent-controlled.',
+      sub: 'Tuition paid directly from your ESA. Every Arizona family qualifies. State-funded, parent-controlled.',
       btnText: 'See what ESA covers for your family →',
       btnSub: 'Apply in under 2 minutes · Every Arizona student qualifies.',
     },
