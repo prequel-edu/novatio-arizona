@@ -1,5 +1,8 @@
 # Arizona LP Changelog
 
+## 2026-06-09 (follow-up) — Add "additional costs for support services" note
+Per Roberta: state explicitly, anywhere support services are mentioned, that they carry additional costs and to speak to admissions for details (no prices on page). Added to: shared chassis IEP/504 FAQ (all 4 pages), every-learner SPED section note, every-learner "Does Novatio replace IEP services" FAQ, and every-learner dyslexia FAQ. Rollback point for this follow-up: commit `f9b8502`.
+
 ## 2026-06-09 — Team feedback (Karissa/Roberta) + SPED doc reconciliation + favicon + audio
 
 **Deploy:** GitHub Pages, branch `main` → https://arizona.novatio.school
