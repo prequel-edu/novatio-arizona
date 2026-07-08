@@ -1,5 +1,8 @@
 # Arizona LP Changelog
 
+## 2026-07-08 — Phone validation: reject fake/junk numbers
+Google Performance Max was driving mass junk form fills with fake phones (`555-000-0000`, all-same-digit, 12-13 digit garbage). Two root causes: the form only required ≥10 digits (so `555-000-0000` passed), and the placeholder literally showed `(555) 000-0000`, training people/bots to submit it. Fix (chassis → rebuilt into all 3 variants): proper North-American-number validation — 10 digits, area + exchange must start 2-9, reject the 555 range, reject all-identical digits and straight sequences, strips a leading `+1` — with a clear inline error. Placeholder changed to "Your mobile number". Client-side only; a determined bot POSTing to the HubSpot API bypasses it (phase 2 = Twilio Lookup edge verification if needed). Context: 340 pmax ESA leads → 1 booked call, 27% grade-disqualified. Rollback: pre-change commit `1fdf02f`.
+
 ## 2026-07-08 — August 3 announcement bar + nav logo fix + ann.js hosting
 **Deploy:** GitHub Pages, branch `main` → https://arizona.novatio.school
 **Rollback point (pre-change commit):** `1820317`

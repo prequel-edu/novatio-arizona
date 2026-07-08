@@ -486,7 +486,7 @@
               <div class="fg"><label>Last Name *</label><input type="text" name="last_name" placeholder="Last name" required /></div>
             </div>
             <div class="fg"><label>Email *</label><input type="email" name="email" placeholder="sarah@example.com" required /><span class="fg-error" data-for="email" style="display:none;color:#c00;font-size:13px;margin-top:6px"></span></div>
-            <div class="fg"><label>Phone *</label><input type="tel" name="phone" placeholder="(555) 000-0000" inputmode="tel" required /><span class="fg-error" data-for="phone" style="display:none;color:#c00;font-size:13px;margin-top:6px"></span></div>
+            <div class="fg"><label>Phone *</label><input type="tel" name="phone" placeholder="Your mobile number" inputmode="tel" required /><span class="fg-error" data-for="phone" style="display:none;color:#c00;font-size:13px;margin-top:6px"></span></div>
             <div class="fg">
               <label>Student's Grade *</label>
               <select name="grade_eligibility" required>
@@ -1086,13 +1086,21 @@ async function handleSubmit(e) {
   if (EMAIL_TYPOS[emailDomain]) { const fixed = emailVal.replace('@' + emailDomain, '@' + EMAIL_TYPOS[emailDomain]); if (emailEl) emailEl.value = fixed; showEmailErr('Did you mean ' + fixed + '? Please confirm and submit again.'); return; }
   if (emailErrEl) emailErrEl.style.display = 'none';
 
-  // Phone validation — require ≥10 digits to prevent SalesMsg silent failures
+  // Phone validation — reject fake/junk numbers, require a valid North American mobile
   const phoneEl = form.querySelector('input[name="phone"]');
-  const phoneDigits = (phoneEl?.value || '').replace(/\D/g, '');
+  let phoneDigits = (phoneEl?.value || '').replace(/\D/g, '');
+  if (phoneDigits.length === 11 && phoneDigits[0] === '1') phoneDigits = phoneDigits.slice(1); // strip leading country code
   const phoneErrEl = form.querySelector('.fg-error[data-for="phone"]');
-  if (phoneDigits.length < 10) {
+  const area = phoneDigits.slice(0, 3), exch = phoneDigits.slice(3, 6);
+  const validPhone =
+    phoneDigits.length === 10 &&
+    /^[2-9]/.test(area) && /^[2-9]/.test(exch) &&        // valid NANP area + exchange (can't start with 0 or 1)
+    area !== '555' && exch !== '555' &&                  // 555 is the reserved/fake range
+    !/^(\d)\1{9}$/.test(phoneDigits) &&                  // not all identical digits (e.g. 0000000000)
+    !['1234567890', '0123456789'].includes(phoneDigits); // not a straight sequence
+  if (!validPhone) {
     if (phoneErrEl) {
-      phoneErrEl.textContent = 'Please enter a valid 10-digit phone number';
+      phoneErrEl.textContent = 'Please enter a valid 10-digit U.S. mobile number (e.g. 480-321-7654) so we can text you about enrollment.';
       phoneErrEl.style.display = 'block';
     }
     phoneEl?.focus();
