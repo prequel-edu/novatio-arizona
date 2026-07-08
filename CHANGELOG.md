@@ -1,5 +1,12 @@
 # Arizona LP Changelog
 
+## 2026-07-08 — August 3 announcement bar + nav logo fix + ann.js hosting
+**Deploy:** GitHub Pages, branch `main` → https://arizona.novatio.school
+**Rollback point (pre-change commit):** `1820317`
+- **Announcement bar** (chassis → all 4 pages): dark (#222625) full-width bar above nav, "Novatio Starts on August 3 - Enroll Now!", click scrolls to #apply-form. ⚠️ Copy swap due after Aug 3 (align with task-522 / SMS urgency swaps).
+- **Nav logo fix:** old `687c2d0d...` Webflow CDN URL had been returning 403 (logo invisible via white-logo onerror fallback). Swapped to working `68872db3...` dark logo, removed the fallback.
+- **ann.js (new file):** hosted here for novatio.school's Webflow announcement bar — pads body by bar height because that site's navbar is position:fixed. Referenced by `<script src="https://arizona.novatio.school/ann.js" defer>` inside the Webflow Navbar component. Do NOT delete when reverting LP changes.
+
 ## 2026-06-09 (follow-up) — Add "additional costs for support services" note
 Per Roberta: state explicitly, anywhere support services are mentioned, that they carry additional costs and to speak to admissions for details (no prices on page). Added to: shared chassis IEP/504 FAQ (all 4 pages), every-learner SPED section note, every-learner "Does Novatio replace IEP services" FAQ, and every-learner dyslexia FAQ. Rollback point for this follow-up: commit `f9b8502`.
 
