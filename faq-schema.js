@@ -5,6 +5,17 @@
    and injects schema.org FAQPage markup. No-ops if the section is absent. */
 (function () {
   var d = document;
+  /* Backfill BlogPosting image: the template's inline JSON-LD builder runs
+     before the hero <img> exists in the DOM, so it misses the image. This
+     script loads deferred, after the DOM is complete. */
+  try {
+    var bp = d.getElementById('np-blogposting');
+    var hero = d.querySelector('img.blog-hero');
+    if (bp && hero && hero.src && hero.src.indexOf('placeholder') < 0) {
+      var o = JSON.parse(bp.textContent || '{}');
+      if (o && !o.image) { o.image = hero.src; bp.textContent = JSON.stringify(o); }
+    }
+  } catch (e) {}
   var h2 = d.getElementById('frequently-asked-questions');
   if (!h2) {
     var hs = d.querySelectorAll('h2');
