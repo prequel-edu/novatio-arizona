@@ -16,6 +16,12 @@
       if (o && !o.image) { o.image = hero.src; bp.textContent = JSON.stringify(o); }
     }
   } catch (e) {}
+  /* If the page already ships server-side FAQPage JSON-LD (Webflow page
+     settings bind the faq-schema-json CMS field), don't inject a duplicate. */
+  var existing = d.querySelectorAll('script[type="application/ld+json"]');
+  for (var j = 0; j < existing.length; j++) {
+    if ((existing[j].textContent || '').indexOf('"FAQPage"') >= 0) return;
+  }
   var h2 = d.getElementById('frequently-asked-questions');
   if (!h2) {
     var hs = d.querySelectorAll('h2');
