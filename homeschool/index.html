@@ -391,11 +391,26 @@
 <!-- ══════════════════════════════════════════════════
      ANNOUNCEMENT BAR
 ══════════════════════════════════════════════════ -->
-<div class="announce-bar" role="button" tabindex="0"
-     onclick="document.getElementById('apply-form').scrollIntoView({behavior:'smooth'})"
-     onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();document.getElementById('apply-form').scrollIntoView({behavior:'smooth'})}">
-  Novatio Starts on August 3 - <span class="announce-cta">Enroll Now!</span>
+<div class="announce-bar" id="announce-bar" role="button" tabindex="0"
+     onclick="annBarClick()"
+     onkeydown="if(event.key==='Enter'||event.key==' '){event.preventDefault();annBarClick()}">
+  <span id="ann-msg-1">New Students Start Every Monday - <span class="announce-cta">Enroll Now!</span></span>
+  <span id="ann-msg-2" style="display:none">Sign Up for Upcoming School Events - <span class="announce-cta">Register Here</span></span>
 </div>
+<script>
+(function(){
+  var showing = 1;
+  window.annBarClick = function(){
+    if (showing === 1) { document.getElementById('apply-form').scrollIntoView({behavior:'smooth'}); }
+    else { window.open('https://luma.com/novatioschool','_blank','noopener'); }
+  };
+  setInterval(function(){
+    showing = showing === 1 ? 2 : 1;
+    document.getElementById('ann-msg-1').style.display = showing === 1 ? '' : 'none';
+    document.getElementById('ann-msg-2').style.display = showing === 2 ? '' : 'none';
+  }, 6000);
+})();
+</script>
 
 <!-- ══════════════════════════════════════════════════
      NAV — company logo immediately visible
