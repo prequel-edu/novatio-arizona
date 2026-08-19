@@ -19,6 +19,18 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // Safety guard: this page's ESA copy is Arizona-only. Every current route
+  // gates on state_code=arizona upstream; if a non-AZ lead ever lands here,
+  // hide the ESA-specific lead line rather than show a wrong claim.
+  var sc = (params.get("state_code") || "").toLowerCase();
+  if (sc && sc !== "arizona") {
+    document.querySelectorAll("em, p").forEach(function (el) {
+      if (el.textContent.indexOf("Empowerment Scholarship Account") !== -1 && el.tagName === "EM") {
+        el.style.display = "none";
+      }
+    });
+  }
+
   var BOOKING = "https://meetings.hubspot.com/karissa-ham/novatio-admissions";
   function bookingUrl(embed) {
     try {
