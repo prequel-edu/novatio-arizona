@@ -996,7 +996,7 @@
 // UTM capture
 (function() {
   const p = new URLSearchParams(window.location.search);
-  ['utm_source','utm_medium','utm_campaign','utm_term','utm_content'].forEach(k => {
+  ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','fbadid'].forEach(k => {
     if (p.get(k)) localStorage.setItem('wf_' + k, p.get(k));
   });
 })();
@@ -1108,7 +1108,14 @@ async function handleSubmit(e) {
   const qp = new URLSearchParams();
   qp.append('state_code', 'arizona');
   qp.append('grade_eligibility', isEligible ? 'eligible' : 'ineligible');
-  ['utm_source','utm_medium','utm_campaign','utm_term','utm_content'].forEach(k => {
+  // Identity fields so the thank-you page can prefill the application + booking links
+  if (data.first_name) qp.append('first_name', data.first_name);
+  if (data.last_name)  qp.append('last_name', data.last_name);
+  if (data.email)      qp.append('email', data.email);
+  if (data.phone)      qp.append('phone', data.phone);
+  if (data.zip)        qp.append('zip', data.zip);
+  if (LP_VARIANT)      qp.append('lp_variant', LP_VARIANT);
+  ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','fbadid'].forEach(k => {
     const v = localStorage.getItem('wf_' + k);
     if (v) qp.append(k, v);
   });
