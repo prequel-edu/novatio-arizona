@@ -5,6 +5,35 @@
    and injects schema.org FAQPage markup. No-ops if the section is absent. */
 (function () {
   var d = document;
+  /* --- Rich-text table styling (added 2026-08-21) ---------------------
+     Webflow's blog rich text ships <table> with no borders, no cell
+     padding and no header rule, so generated comparison tables render as
+     columns of text running together. Inject scoped CSS once, and wrap
+     each table so wide ones scroll instead of breaking the page. Runs
+     before any early return below so it applies to every article. */
+  try {
+    if (!d.getElementById('np-rt-table-css')) {
+      var st = d.createElement('style');
+      st.id = 'np-rt-table-css';
+      st.textContent =
+        '.w-richtext .np-table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1.5rem 0}' +
+        '.w-richtext table{width:100%;border-collapse:collapse;font-size:.95em;line-height:1.45}' +
+        '.w-richtext table th,.w-richtext table td{padding:.65rem .85rem;text-align:left;vertical-align:top;border-bottom:1px solid #e4e2dd}' +
+        '.w-richtext table thead th{border-bottom:2px solid #222625;font-weight:700;white-space:nowrap}' +
+        '.w-richtext table tbody tr:nth-child(even){background:#faf9f6}' +
+        '.w-richtext table tbody tr:last-child td{border-bottom:none}';
+      d.head.appendChild(st);
+    }
+    var tables = d.querySelectorAll('.w-richtext table');
+    for (var t = 0; t < tables.length; t++) {
+      var tbl = tables[t];
+      if (tbl.parentNode && tbl.parentNode.className === 'np-table-scroll') continue;
+      var wrap = d.createElement('div');
+      wrap.className = 'np-table-scroll';
+      tbl.parentNode.insertBefore(wrap, tbl);
+      wrap.appendChild(tbl);
+    }
+  } catch (e) {}
   /* Backfill BlogPosting image: the template's inline JSON-LD builder runs
      before the hero <img> exists in the DOM, so it misses the image. This
      script loads deferred, after the DOM is complete. */
