@@ -102,7 +102,7 @@ const variants = {
     faqVariantHtml: `
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">Will the day be too structured for our family?<span class="faq-chevron">&#8964;</span></div>
-        <div class="faq-a">Two hours of academics each morning, live with a Novatio teacher, then afternoon clubs run until 2 PM. After that, the day is yours. No homework, ever. Most homeschool-to-Novatio families keep their existing afternoon routines fully intact. Travel and appointments work fine.</div>
+        <div class="faq-a">Two hours of academics each morning, live with a Novatio teacher, then afternoon clubs run until 2 PM. After that, the day is yours. Teachers don't assign homework. Most homeschool-to-Novatio families keep their existing afternoon routines fully intact. Travel and appointments work fine.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">How much of my day will I get back?<span class="faq-chevron">&#8964;</span></div>
@@ -110,7 +110,7 @@ const variants = {
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">Can my child still do co-ops, music lessons, and sports?<span class="faq-chevron">&#8964;</span></div>
-        <div class="faq-a">Yes. The school day ends at 2 PM and there's no homework, ever. The platform travels with you, so appointments and travel days work fine.</div>
+        <div class="faq-a">Yes. The school day ends at 2 PM and teachers don't assign homework. The platform travels with you, so appointments and travel days work fine.</div>
       </div>
 `,
     finalCta: {
