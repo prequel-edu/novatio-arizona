@@ -1176,13 +1176,15 @@ async function handleSubmit(e) {
   await Promise.all([hsPromise, supaPromise]);
 
   // Redirect routing (mimics novatio.school)
+  // Grade 9+ families go to the high-school holding page (no outreach; resubmit for a younger child)
+  const isTooOld = data.grade_eligibility === 'older';
   const baseUrl = isEligible
     ? 'https://novatio.school/thank-you-eligible'
-    : 'https://novatio.school/thank-you-ineligible';
+    : (isTooOld ? 'https://novatio.school/too-old' : 'https://novatio.school/thank-you-ineligible');
 
   const qp = new URLSearchParams();
   qp.append('state_code', 'arizona');
-  qp.append('grade_eligibility', isEligible ? 'eligible' : 'ineligible');
+  qp.append('grade_eligibility', isEligible ? 'eligible' : (isTooOld ? 'older' : 'ineligible'));
   // Identity fields so the thank-you page can prefill the application + booking links
   if (data.first_name) qp.append('first_name', data.first_name);
   if (data.last_name)  qp.append('last_name', data.last_name);
